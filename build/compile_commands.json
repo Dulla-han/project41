@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build",
+  "command": "/usr/bin/g++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -g -std=gnu++17 -o CMakeFiles/project41.dir/main.cpp.o -c \"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/main.cpp\"",
+  "file": "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/main.cpp",
+  "output": "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/CMakeFiles/project41.dir/main.cpp.o"
+},
+{
+  "directory": "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build",
+  "command": "/usr/bin/g++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -g -std=gnu++17 -o CMakeFiles/project41.dir/widget.cpp.o -c \"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/widget.cpp\"",
+  "file": "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/widget.cpp",
+  "output": "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/CMakeFiles/project41.dir/widget.cpp.o"
+}
+]

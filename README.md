@@ -1,1 +1,1 @@
-# Automatic Animation Interpolation Comparison
+# Automatic Animation Algorithm Interpolation Benchmark

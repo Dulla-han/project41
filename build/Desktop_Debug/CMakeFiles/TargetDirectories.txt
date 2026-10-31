@@ -1,0 +1,5 @@
+/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/project41.dir
+/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/edit_cache.dir
+/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/rebuild_cache.dir
+/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/project41_autogen_timestamp_deps.dir
+/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/project41_autogen.dir

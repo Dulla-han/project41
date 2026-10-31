@@ -1,0 +1,3 @@
+/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/CMakeFiles/project41.dir
+/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/CMakeFiles/edit_cache.dir
+/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/CMakeFiles/rebuild_cache.dir
