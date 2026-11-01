@@ -12,6 +12,11 @@ set(CMAKE_AUTOUIC ON)
 
 qt_add_executable(project41 main.cpp
     mainwindow.h mainwindow.cpp mainwindow.ui
+    frameview.h
+    frameview.cpp
 )
 
 target_link_libraries(project41 PRIVATE Qt6::Widgets)
+target_include_directories(project41 PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)

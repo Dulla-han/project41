@@ -25,6 +25,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "frameview.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -49,9 +50,9 @@ public:
     QWidget *algorithmPreview1;
     QHBoxLayout *horizontalLayout;
     QLabel *rifeLabel;
-    QLabel *startFrameLabel;
-    QLabel *generatedFrameLabel;
-    QLabel *endFrameLabel;
+    FrameView *startFrameLabel;
+    FrameView *generatedFrameLabel;
+    FrameView *endFrameLabel;
     QSpacerItem *verticalSpacer_2;
     QWidget *benchmarkPage;
     QWidget *controlsPanel;
@@ -138,7 +139,7 @@ public:
 
         horizontalLayout->addWidget(rifeLabel);
 
-        startFrameLabel = new QLabel(algorithmPreview1);
+        startFrameLabel = new FrameView(algorithmPreview1);
         startFrameLabel->setObjectName("startFrameLabel");
         startFrameLabel->setMinimumSize(QSize(120, 90));
         startFrameLabel->setFrameShape(QFrame::Shape::Box);
@@ -146,7 +147,7 @@ public:
 
         horizontalLayout->addWidget(startFrameLabel);
 
-        generatedFrameLabel = new QLabel(algorithmPreview1);
+        generatedFrameLabel = new FrameView(algorithmPreview1);
         generatedFrameLabel->setObjectName("generatedFrameLabel");
         generatedFrameLabel->setMinimumSize(QSize(120, 90));
         generatedFrameLabel->setFrameShape(QFrame::Shape::Box);
@@ -154,7 +155,7 @@ public:
 
         horizontalLayout->addWidget(generatedFrameLabel);
 
-        endFrameLabel = new QLabel(algorithmPreview1);
+        endFrameLabel = new FrameView(algorithmPreview1);
         endFrameLabel->setObjectName("endFrameLabel");
         endFrameLabel->setMinimumSize(QSize(120, 90));
         endFrameLabel->setFrameShape(QFrame::Shape::Box);

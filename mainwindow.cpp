@@ -69,19 +69,10 @@ void MainWindow::loadFrames(){
 
     ui->contentStack->setCurrentWidget(ui->previewPage);
 
-    ui->startFrameLabel->setPixmap(
-        QPixmap::fromImage(startFrame).scaled(ui->startFrameLabel->contentsRect().size(),
-                                              Qt::KeepAspectRatio,
-                                              Qt::SmoothTransformation
-    ));
+    ui->startFrameLabel->setImage(startFrame);
+    ui->endFrameLabel->setImage(endFrame);
 
-    ui->endFrameLabel->setPixmap(
-        QPixmap::fromImage(endFrame).scaled(ui->endFrameLabel->contentsRect().size(),
-                                              Qt::KeepAspectRatio,
-                                              Qt::SmoothTransformation
-    ));
-
-    ui->generatedFrameLabel->clear();
+    ui->generatedFrameLabel->setImage(QImage());
     ui->generatedFrameLabel->setText("Waiting run permission...");
 
     ui->runButton->setEnabled(true);

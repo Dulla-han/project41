@@ -526,6 +526,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/frameview.h",
+			"MU",
+			"EWIEGA46WW/moc_frameview.cpp",
+			null
+		],
+		[
 			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -545,6 +551,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41",
 		"/usr/include/qt6/QtCore",
 		"/usr/include/qt6",
 		"/usr/lib64/qt6/mkspecs/linux-g++",
@@ -590,6 +597,11 @@
 	"SETTINGS_FILE" : "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/project41_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/frameview.cpp",
+			"MU",
+			null
+		],
 		[
 			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/main.cpp",
 			"MU",

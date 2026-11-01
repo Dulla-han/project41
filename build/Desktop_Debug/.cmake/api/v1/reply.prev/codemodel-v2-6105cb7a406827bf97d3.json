@@ -797,7 +797,9 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -912,7 +914,9 @@
 					"name" : "project41",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -921,8 +925,22 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "project41::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-project41-Debug-6238c3868e5d3e405262.json",
+					"jsonFile" : "target-project41-Debug-05c44470e8048aebf3b6.json",
 					"name" : "project41",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "project41_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-project41_autogen-Debug-d4e4aa1890448a7e2fcb.json",
+					"name" : "project41_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "project41_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-project41_autogen_timestamp_deps-Debug-009f8331b8765a75417d.json",
+					"name" : "project41_autogen_timestamp_deps",
 					"projectIndex" : 0
 				}
 			]

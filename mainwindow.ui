@@ -128,7 +128,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="startFrameLabel">
+                   <widget class="FrameView" name="startFrameLabel">
                     <property name="minimumSize">
                      <size>
                       <width>120</width>
@@ -147,7 +147,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="generatedFrameLabel">
+                   <widget class="FrameView" name="generatedFrameLabel">
                     <property name="minimumSize">
                      <size>
                       <width>120</width>
@@ -166,7 +166,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="endFrameLabel">
+                   <widget class="FrameView" name="endFrameLabel">
                     <property name="minimumSize">
                      <size>
                       <width>120</width>
@@ -333,6 +333,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FrameView</class>
+   <extends>QLabel</extends>
+   <header>frameview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

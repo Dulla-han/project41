@@ -54,7 +54,7 @@ build CMakeFiles/project41.dir/project41_autogen/mocs_compilation.cpp.o: CXX_COM
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_QML_DEBUG -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/project41.dir/project41_autogen/mocs_compilation.cpp.o.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/include" -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui
+  INCLUDES = -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/include" -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41" -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui
   OBJECT_DIR = CMakeFiles/project41.dir
   OBJECT_FILE_DIR = CMakeFiles/project41.dir/project41_autogen
   TARGET_SUPPORT_DIR = CMakeFiles/project41.dir
@@ -64,7 +64,7 @@ build CMakeFiles/project41.dir/main.cpp.o: CXX_COMPILER__project41_unscanned_Deb
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_QML_DEBUG -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/project41.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/include" -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui
+  INCLUDES = -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/include" -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41" -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui
   OBJECT_DIR = CMakeFiles/project41.dir
   OBJECT_FILE_DIR = CMakeFiles/project41.dir
   TARGET_SUPPORT_DIR = CMakeFiles/project41.dir
@@ -74,7 +74,17 @@ build CMakeFiles/project41.dir/mainwindow.cpp.o: CXX_COMPILER__project41_unscann
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_QML_DEBUG -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/project41.dir/mainwindow.cpp.o.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  INCLUDES = -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/include" -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui
+  INCLUDES = -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/include" -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41" -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui
+  OBJECT_DIR = CMakeFiles/project41.dir
+  OBJECT_FILE_DIR = CMakeFiles/project41.dir
+  TARGET_SUPPORT_DIR = CMakeFiles/project41.dir
+
+build CMakeFiles/project41.dir/frameview.cpp.o: CXX_COMPILER__project41_unscanned_Debug /run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan$ Kul/project41/frameview.cpp || cmake_object_order_depends_target_project41
+  CONFIG = Debug
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_QML_DEBUG -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/project41.dir/frameview.cpp.o.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/include" -I"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41" -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui
   OBJECT_DIR = CMakeFiles/project41.dir
   OBJECT_FILE_DIR = CMakeFiles/project41.dir
   TARGET_SUPPORT_DIR = CMakeFiles/project41.dir
@@ -87,7 +97,7 @@ build CMakeFiles/project41.dir/mainwindow.cpp.o: CXX_COMPILER__project41_unscann
 #############################################
 # Link the executable project41
 
-build project41: CXX_EXECUTABLE_LINKER__project41_Debug CMakeFiles/project41.dir/project41_autogen/mocs_compilation.cpp.o CMakeFiles/project41.dir/main.cpp.o CMakeFiles/project41.dir/mainwindow.cpp.o | /usr/lib64/libQt6Widgets.so.6.11.2 /usr/lib64/libQt6Gui.so.6.11.2 /usr/lib64/libGLX.so /usr/lib64/libOpenGL.so /usr/lib64/libQt6Core.so.6.11.2 || project41_autogen project41_autogen_timestamp_deps
+build project41: CXX_EXECUTABLE_LINKER__project41_Debug CMakeFiles/project41.dir/project41_autogen/mocs_compilation.cpp.o CMakeFiles/project41.dir/main.cpp.o CMakeFiles/project41.dir/mainwindow.cpp.o CMakeFiles/project41.dir/frameview.cpp.o | /usr/lib64/libQt6Widgets.so.6.11.2 /usr/lib64/libQt6Gui.so.6.11.2 /usr/lib64/libGLX.so /usr/lib64/libOpenGL.so /usr/lib64/libQt6Core.so.6.11.2 || project41_autogen project41_autogen_timestamp_deps
   CONFIG = Debug
   DEP_FILE = CMakeFiles/project41.dir/link.d
   FLAGS = -g

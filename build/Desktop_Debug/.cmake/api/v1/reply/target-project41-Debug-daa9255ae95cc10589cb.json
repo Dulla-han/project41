@@ -24,7 +24,8 @@
 			"_qt_internal_find_third_party_dependencies",
 			"_qt_internal_find_qt_dependencies",
 			"add_compile_definitions",
-			"project"
+			"project",
+			"target_include_directories"
 		],
 		"files" : 
 		[
@@ -74,7 +75,7 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 17,
+				"line" : 19,
 				"parent" : 0
 			},
 			{
@@ -246,6 +247,12 @@
 				"file" : 12,
 				"line" : 82,
 				"parent" : 35
+			},
+			{
+				"command" : 15,
+				"file" : 1,
+				"line" : 20,
+				"parent" : 0
 			}
 		]
 	},
@@ -300,6 +307,10 @@
 					"path" : "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/include"
 				},
 				{
+					"backtrace" : 37,
+					"path" : "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41"
+				},
+				{
 					"backtrace" : 33,
 					"isSystem" : true,
 					"path" : "/usr/include/qt6/QtCore"
@@ -339,7 +350,8 @@
 			[
 				0,
 				1,
-				3
+				3,
+				6
 			]
 		}
 	],
@@ -432,7 +444,8 @@
 			[
 				0,
 				1,
-				3
+				3,
+				6
 			]
 		},
 		{
@@ -440,7 +453,8 @@
 			"sourceIndexes" : 
 			[
 				2,
-				5
+				5,
+				7
 			]
 		},
 		{
@@ -454,14 +468,14 @@
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				6
+				8
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				7
+				9
 			]
 		}
 	],
@@ -495,6 +509,17 @@
 			"backtrace" : 4,
 			"path" : "mainwindow.ui",
 			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "frameview.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "frameview.cpp",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
