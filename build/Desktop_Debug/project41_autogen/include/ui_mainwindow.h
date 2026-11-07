@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -20,6 +21,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
@@ -49,16 +51,21 @@ public:
     QVBoxLayout *verticalLayout_4;
     QWidget *algorithmPreview1;
     QHBoxLayout *horizontalLayout;
-    QLabel *rifeLabel;
+    QLabel *algorithmNameLabel;
     FrameView *startFrameLabel;
     FrameView *generatedFrameLabel;
     FrameView *endFrameLabel;
     QSpacerItem *verticalSpacer_2;
+    QSlider *frameSlider;
     QWidget *benchmarkPage;
     QWidget *controlsPanel;
     QVBoxLayout *verticalLayout_2;
     QSpacerItem *verticalSpacer;
     QWidget *settingsPanel;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *interpolationMulLabel;
+    QComboBox *interpolationMulComboBox;
     QPushButton *runButton;
     QMenuBar *menubar;
     QMenu *menuFile;
@@ -122,22 +129,27 @@ public:
         previewScrollArea->setWidgetResizable(true);
         previewRowsContainer = new QWidget();
         previewRowsContainer->setObjectName("previewRowsContainer");
-        previewRowsContainer->setGeometry(QRect(0, 0, 588, 400));
+        previewRowsContainer->setGeometry(QRect(0, 0, 588, 379));
         verticalLayout_4 = new QVBoxLayout(previewRowsContainer);
         verticalLayout_4->setObjectName("verticalLayout_4");
         algorithmPreview1 = new QWidget(previewRowsContainer);
         algorithmPreview1->setObjectName("algorithmPreview1");
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(algorithmPreview1->sizePolicy().hasHeightForWidth());
+        algorithmPreview1->setSizePolicy(sizePolicy);
         algorithmPreview1->setMinimumSize(QSize(0, 130));
-        algorithmPreview1->setMaximumSize(QSize(16777215, 130));
+        algorithmPreview1->setMaximumSize(QSize(16777215, 16777215));
         horizontalLayout = new QHBoxLayout(algorithmPreview1);
         horizontalLayout->setObjectName("horizontalLayout");
-        rifeLabel = new QLabel(algorithmPreview1);
-        rifeLabel->setObjectName("rifeLabel");
-        rifeLabel->setMinimumSize(QSize(80, 0));
-        rifeLabel->setMaximumSize(QSize(80, 16777215));
-        rifeLabel->setFrameShape(QFrame::Shape::Box);
+        algorithmNameLabel = new QLabel(algorithmPreview1);
+        algorithmNameLabel->setObjectName("algorithmNameLabel");
+        algorithmNameLabel->setMinimumSize(QSize(80, 0));
+        algorithmNameLabel->setMaximumSize(QSize(80, 16777215));
+        algorithmNameLabel->setFrameShape(QFrame::Shape::Box);
 
-        horizontalLayout->addWidget(rifeLabel);
+        horizontalLayout->addWidget(algorithmNameLabel);
 
         startFrameLabel = new FrameView(algorithmPreview1);
         startFrameLabel->setObjectName("startFrameLabel");
@@ -177,6 +189,12 @@ public:
 
         verticalLayout_3->addWidget(previewScrollArea);
 
+        frameSlider = new QSlider(previewPage);
+        frameSlider->setObjectName("frameSlider");
+        frameSlider->setOrientation(Qt::Orientation::Horizontal);
+
+        verticalLayout_3->addWidget(frameSlider);
+
         contentStack->addWidget(previewPage);
         benchmarkPage = new QWidget();
         benchmarkPage->setObjectName("benchmarkPage");
@@ -211,6 +229,26 @@ public:
         settingsPanel->setStyleSheet(QString::fromUtf8("QWidget#settingsPanel {\n"
 "	background-color: rgb(192, 28, 40);\n"
 "}"));
+        widget = new QWidget(settingsPanel);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(10, 0, 256, 31));
+        horizontalLayout_2 = new QHBoxLayout(widget);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        interpolationMulLabel = new QLabel(widget);
+        interpolationMulLabel->setObjectName("interpolationMulLabel");
+
+        horizontalLayout_2->addWidget(interpolationMulLabel);
+
+        interpolationMulComboBox = new QComboBox(widget);
+        interpolationMulComboBox->addItem(QString());
+        interpolationMulComboBox->addItem(QString());
+        interpolationMulComboBox->addItem(QString());
+        interpolationMulComboBox->addItem(QString());
+        interpolationMulComboBox->setObjectName("interpolationMulComboBox");
+
+        horizontalLayout_2->addWidget(interpolationMulComboBox);
+
 
         gridLayout->addWidget(settingsPanel, 1, 1, 1, 1);
 
@@ -262,10 +300,16 @@ public:
 #endif // QT_CONFIG(shortcut)
         previewButton->setText(QCoreApplication::translate("MainWindow", "Preview", nullptr));
         benchmarkButton->setText(QCoreApplication::translate("MainWindow", "Benchmark", nullptr));
-        rifeLabel->setText(QCoreApplication::translate("MainWindow", "RIFE", nullptr));
+        algorithmNameLabel->setText(QCoreApplication::translate("MainWindow", "Blend", nullptr));
         startFrameLabel->setText(QCoreApplication::translate("MainWindow", "Start Frame", nullptr));
         generatedFrameLabel->setText(QCoreApplication::translate("MainWindow", "Generated Frame", nullptr));
         endFrameLabel->setText(QCoreApplication::translate("MainWindow", "End Frame", nullptr));
+        interpolationMulLabel->setText(QCoreApplication::translate("MainWindow", "Interpolation Multiplier", nullptr));
+        interpolationMulComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "2x", nullptr));
+        interpolationMulComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "4x", nullptr));
+        interpolationMulComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "8x", nullptr));
+        interpolationMulComboBox->setItemText(3, QCoreApplication::translate("MainWindow", "16x", nullptr));
+
         runButton->setText(QCoreApplication::translate("MainWindow", "Run", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menuLoad_Input->setTitle(QCoreApplication::translate("MainWindow", "Load Input", nullptr));

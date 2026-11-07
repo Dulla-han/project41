@@ -1,20 +1,82 @@
 # ninja log v7
-48	1238	1793469831939211600	CMakeFiles/project41.dir/main.cpp.o	d9398cf8345d8135
-2	336	1793469949105331900	build.ninja	de5c880301f5dd87
-2	336	1793469949100668200	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/cmake_install.cmake	de5c880301f5dd87
-5	48	1793469909815969300	project41_autogen/timestamp	f7a7034de85e09dc
-5	48	1793469909815969300	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
-5	48	1793469909815969300	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
-5	48	1793469909815969300	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
-197	1336	1793393080744020400	CMakeFiles/project41.dir/project41_autogen/mocs_compilation.cpp.o	1dd3def9cfc330f
-41	1610	1793468175622146100	CMakeFiles/project41.dir/mainwindow.cpp.o	7e893b290fd901cc
-1611	1871	1793468177192119400	project41	fea42533ba0d5d6f
-5	227	1793470034890564100	project41_autogen/timestamp	f7a7034de85e09dc
-5	227	1793470034890564100	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
-5	227	1793470034890564100	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
-5	227	1793470034890564100	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
-227	1471	1793470034900989900	CMakeFiles/project41.dir/project41_autogen/mocs_compilation.cpp.o	50948064694fd395
-228	1536	1793470034901230600	CMakeFiles/project41.dir/main.cpp.o	359472a3c5dea4c9
+266	1741	1793548085526646000	CMakeFiles/project41.dir/main.cpp.o	359472a3c5dea4c9
+3	369	1793560818978751700	build.ninja	de5c880301f5dd87
+3	369	1793560818973151800	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/cmake_install.cmake	de5c880301f5dd87
+4	52	1793550396855717600	project41_autogen/timestamp	f7a7034de85e09dc
+4	52	1793550396855717600	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+4	52	1793550396855717600	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+4	52	1793550396855717600	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+266	1672	1793548085526329200	CMakeFiles/project41.dir/project41_autogen/mocs_compilation.cpp.o	50948064694fd395
+53	2360	1793550396904036100	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+2360	2721	1793550399211733500	project41	47f0eda9cad7c327
 228	1554	1793470034901726800	CMakeFiles/project41.dir/frameview.cpp.o	f8ed00a192a08a4d
-228	1924	1793470034901497800	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
-1924	2171	1793470036597292700	project41	e345c5e8fb4d703d
+53	1012	1793550396904250300	CMakeFiles/project41.dir/blendinterpolator.cpp.o	9135603b75072f8a
+16	599	1793718139121584100	project41_autogen/timestamp	f7a7034de85e09dc
+16	599	1793718139121584100	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+16	599	1793718139121584100	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+16	599	1793718139121584100	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+602	2693	1793718139156038500	CMakeFiles/project41.dir/project41_autogen/mocs_compilation.cpp.o	50948064694fd395
+604	2817	1793718139157595900	CMakeFiles/project41.dir/frameview.cpp.o	f8ed00a192a08a4d
+603	3417	1793718139156927500	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+13	105	1793718182408207100	project41_autogen/timestamp	f7a7034de85e09dc
+13	105	1793718182408207100	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+13	105	1793718182408207100	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+13	105	1793718182408207100	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+107	3005	1793718182501741400	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+12	105	1793718250505767400	project41_autogen/timestamp	f7a7034de85e09dc
+12	105	1793718250505767400	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+12	105	1793718250505767400	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+12	105	1793718250505767400	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+107	2843	1793718250600356300	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+14	86	1793718312271715800	project41_autogen/timestamp	f7a7034de85e09dc
+14	86	1793718312271715800	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+14	86	1793718312271715800	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+14	86	1793718312271715800	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+88	2166	1793718312343519700	CMakeFiles/project41.dir/algorithmpreviewrow.cpp.o	c2aee424cea968d4
+87	2752	1793718312342964100	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+2752	3013	1793718315008048000	project41	21407eee7ba7fa5d
+16	563	1793898604170239900	project41	21407eee7ba7fa5d
+10	85	1793899723846800300	project41_autogen/timestamp	f7a7034de85e09dc
+10	85	1793899723846800300	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+10	85	1793899723846800300	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+10	85	1793899723846800300	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+88	2345	1793899723918802800	CMakeFiles/project41.dir/algorithmpreviewrow.cpp.o	c2aee424cea968d4
+88	3003	1793899723918283300	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+3003	3259	1793899726834036400	project41	21407eee7ba7fa5d
+12	477	1793900483886882900	project41_autogen/timestamp	f7a7034de85e09dc
+12	477	1793900483886882900	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+12	477	1793900483886882900	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+12	477	1793900483886882900	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+479	2452	1793900483907795400	CMakeFiles/project41.dir/project41_autogen/mocs_compilation.cpp.o	50948064694fd395
+480	2505	1793900483908402000	CMakeFiles/project41.dir/main.cpp.o	359472a3c5dea4c9
+482	2666	1793900483910643100	CMakeFiles/project41.dir/algorithmpreviewrow.cpp.o	c2aee424cea968d4
+480	3249	1793900483909992500	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+3249	3504	1793900486678006700	project41	21407eee7ba7fa5d
+13	116	1793901758349381900	project41_autogen/timestamp	f7a7034de85e09dc
+13	116	1793901758349381900	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+13	116	1793901758349381900	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+13	116	1793901758349381900	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+119	2357	1793901758455439500	CMakeFiles/project41.dir/algorithmpreviewrow.cpp.o	c2aee424cea968d4
+118	2968	1793901758454928300	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+2968	3220	1793901761304378300	project41	21407eee7ba7fa5d
+10	87	1793901876780809500	project41_autogen/timestamp	f7a7034de85e09dc
+10	87	1793901876780809500	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+10	87	1793901876780809500	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+10	87	1793901876780809500	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+89	2354	1793901876859758100	CMakeFiles/project41.dir/algorithmpreviewrow.cpp.o	c2aee424cea968d4
+89	3000	1793901876859222600	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+3000	3249	1793901879770661800	project41	21407eee7ba7fa5d
+11	93	1793901989965532500	project41_autogen/timestamp	f7a7034de85e09dc
+11	93	1793901989965532500	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+11	93	1793901989965532500	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+11	93	1793901989965532500	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+95	2213	1793901990049628200	CMakeFiles/project41.dir/algorithmpreviewrow.cpp.o	c2aee424cea968d4
+94	2921	1793901990049000300	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+2921	3198	1793901992875807000	project41	21407eee7ba7fa5d
+14	106	1793902435012636700	project41_autogen/timestamp	f7a7034de85e09dc
+14	106	1793902435012636700	project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+14	106	1793902435012636700	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/timestamp	f7a7034de85e09dc
+14	106	1793902435012636700	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp	f7a7034de85e09dc
+108	2361	1793902435106434900	CMakeFiles/project41.dir/algorithmpreviewrow.cpp.o	c2aee424cea968d4
+107	2943	1793902435105926200	CMakeFiles/project41.dir/mainwindow.cpp.o	2768eb6dabaecf7
+2944	3195	1793902437942298600	project41	21407eee7ba7fa5d

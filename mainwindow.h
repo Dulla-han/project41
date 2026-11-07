@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QImage>
+#include <QVector>
+
+class AlgorithmPreviewRow;
 
 namespace Ui {
 class MainWindow;
@@ -18,11 +21,17 @@ public:
 
 private:
     void loadFrames();
+    void updateVisibleFrames();
+    void runExperiment();
+
+    QVector<QImage> previewFrames;
 
     QImage startFrame;
     QImage endFrame;
 
     Ui::MainWindow *ui;
+
+    AlgorithmPreviewRow *blendRow = nullptr;
 };
 
 #endif // MAINWINDOW_H

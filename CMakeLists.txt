@@ -14,6 +14,9 @@ qt_add_executable(project41 main.cpp
     mainwindow.h mainwindow.cpp mainwindow.ui
     frameview.h
     frameview.cpp
+    blendinterpolator.h
+    blendinterpolator.cpp
+    algorithmpreviewrow.h algorithmpreviewrow.cpp algorithmpreviewrow.ui
 )
 
 target_link_libraries(project41 PRIVATE Qt6::Widgets)

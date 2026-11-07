@@ -86,12 +86,18 @@
                 <x>0</x>
                 <y>0</y>
                 <width>588</width>
-                <height>400</height>
+                <height>379</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
                 <widget class="QWidget" name="algorithmPreview1" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -101,12 +107,12 @@
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
-                   <height>130</height>
+                   <height>16777215</height>
                   </size>
                  </property>
                  <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,1,1">
                   <item>
-                   <widget class="QLabel" name="rifeLabel">
+                   <widget class="QLabel" name="algorithmNameLabel">
                     <property name="minimumSize">
                      <size>
                       <width>80</width>
@@ -123,7 +129,7 @@
                      <enum>QFrame::Shape::Box</enum>
                     </property>
                     <property name="text">
-                     <string>RIFE</string>
+                     <string>Blend</string>
                     </property>
                    </widget>
                   </item>
@@ -204,6 +210,13 @@
              </widget>
             </widget>
            </item>
+           <item>
+            <widget class="QSlider" name="frameSlider">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
          <widget class="QWidget" name="benchmarkPage"/>
@@ -265,6 +278,49 @@
 	background-color: rgb(192, 28, 40);
 }</string>
       </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>256</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="interpolationMulLabel">
+          <property name="text">
+           <string>Interpolation Multiplier</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="interpolationMulComboBox">
+          <item>
+           <property name="text">
+            <string>2x</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>4x</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>8x</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>16x</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
     <item row="1" column="0">

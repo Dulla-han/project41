@@ -526,6 +526,18 @@
 	"HEADERS" : 
 	[
 		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/algorithmpreviewrow.h",
+			"MU",
+			"EWIEGA46WW/moc_algorithmpreviewrow.cpp",
+			null
+		],
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/blendinterpolator.h",
+			"MU",
+			"EWIEGA46WW/moc_blendinterpolator.cpp",
+			null
+		],
+		[
 			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/frameview.h",
 			"MU",
 			"EWIEGA46WW/moc_frameview.cpp",
@@ -597,6 +609,16 @@
 	"SETTINGS_FILE" : "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/project41_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/algorithmpreviewrow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/blendinterpolator.cpp",
+			"MU",
+			null
+		],
 		[
 			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/frameview.cpp",
 			"MU",

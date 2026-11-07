@@ -10,6 +10,7 @@ void FrameView::paintEvent(QPaintEvent *) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::SmoothPixmapTransform);
 
+    //default ratio to prevent deformation
     int frameWidth = width();
     int frameHeight = frameWidth * 9 / 16;
 

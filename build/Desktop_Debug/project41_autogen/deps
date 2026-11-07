@@ -1,5 +1,9 @@
 project41_autogen/timestamp: \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/CMakeLists.txt \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/algorithmpreviewrow.cpp \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/algorithmpreviewrow.h \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/blendinterpolator.cpp \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/blendinterpolator.h \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/build/Desktop_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/build/Desktop_Debug/.qtcreator/cmake-helper/package-manager.cmake \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/build/Desktop_Debug/.qtcreator/cmake-helper/qtcreator-project.cmake \
@@ -281,6 +285,8 @@ project41_autogen/timestamp: \
 	/usr/include/linux/types.h \
 	/usr/include/locale.h \
 	/usr/include/pthread.h \
+	/usr/include/qt6/QtCore/QString \
+	/usr/include/qt6/QtCore/QVector \
 	/usr/include/qt6/QtCore/q17memory.h \
 	/usr/include/qt6/QtCore/q20bit.h \
 	/usr/include/qt6/QtCore/q20functional.h \
@@ -407,6 +413,7 @@ project41_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qutf8stringview.h \
 	/usr/include/qt6/QtCore/qvariant.h \
 	/usr/include/qt6/QtCore/qvarlengtharray.h \
+	/usr/include/qt6/QtCore/qvector.h \
 	/usr/include/qt6/QtCore/qversiontagging.h \
 	/usr/include/qt6/QtCore/qxptype_traits.h \
 	/usr/include/qt6/QtCore/qyieldcpu.h \
@@ -437,6 +444,7 @@ project41_autogen/timestamp: \
 	/usr/include/qt6/QtGui/qtransform.h \
 	/usr/include/qt6/QtGui/qwindowdefs.h \
 	/usr/include/qt6/QtWidgets/QMainWindow \
+	/usr/include/qt6/QtWidgets/QWidget \
 	/usr/include/qt6/QtWidgets/qmainwindow.h \
 	/usr/include/qt6/QtWidgets/qsizepolicy.h \
 	/usr/include/qt6/QtWidgets/qtabwidget.h \
@@ -823,5 +831,6 @@ project41_autogen/timestamp: \
 	/usr/share/cmake/Modules/Platform/Linux-Initialize.cmake \
 	/usr/share/cmake/Modules/Platform/Linux.cmake \
 	/usr/share/cmake/Modules/Platform/UnixPaths.cmake \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/algorithmpreviewrow.ui \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/mainwindow.ui \
 	/usr/bin/cmake
