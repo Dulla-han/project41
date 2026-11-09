@@ -4,8 +4,10 @@
 #include <QMainWindow>
 #include <QImage>
 #include <QVector>
+#include <QString>
 
 class AlgorithmPreviewRow;
+class RifeRunner;
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +34,13 @@ private:
     Ui::MainWindow *ui;
 
     AlgorithmPreviewRow *blendRow = nullptr;
+
+    AlgorithmPreviewRow *rifeRow = nullptr;
+    RifeRunner *rifeRunner = nullptr;
+
+    QString startFramePath;
+    QString endFramePath;
+
 };
 
 #endif // MAINWINDOW_H

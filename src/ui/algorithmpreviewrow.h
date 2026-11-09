@@ -20,6 +20,10 @@ public:
     void setAlgorithmName(const QString &name);
     void setFrames(const QVector<QImage> &frames);
     void setFirstVisibleFrame(int index);
+    void setCaptionVisible(bool visible);
+
+protected:
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
     void updateFrames();

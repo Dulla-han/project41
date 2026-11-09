@@ -1,20 +1,24 @@
 project41_autogen/timestamp: \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/CMakeLists.txt \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/algorithmpreviewrow.cpp \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/algorithmpreviewrow.h \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/blendinterpolator.cpp \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/blendinterpolator.h \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/build/Desktop_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/build/Desktop_Debug/.qtcreator/cmake-helper/package-manager.cmake \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/build/Desktop_Debug/.qtcreator/cmake-helper/qtcreator-project.cmake \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/build/Desktop_Debug/CMakeFiles/4.3.0/CMakeCXXCompiler.cmake \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/build/Desktop_Debug/CMakeFiles/4.3.0/CMakeSystem.cmake \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/build/Desktop_Debug/project41_autogen/moc_predefs.h \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/frameview.cpp \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/frameview.h \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/main.cpp \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/mainwindow.cpp \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/mainwindow.h \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/main.cpp \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/processing/blendinterpolator.cpp \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/processing/blendinterpolator.h \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/runners/riferunner.cpp \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/runners/riferunner.h \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/algorithmpreviewrow.cpp \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/algorithmpreviewrow.h \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/frameview.cpp \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/frameview.h \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/mainwindow.cpp \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/mainwindow.h \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/videoinputdialog.cpp \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/videoinputdialog.h \
 	/usr/include/alloca.h \
 	/usr/include/asm-generic/bitsperlong.h \
 	/usr/include/asm-generic/errno-base.h \
@@ -285,6 +289,7 @@ project41_autogen/timestamp: \
 	/usr/include/linux/types.h \
 	/usr/include/locale.h \
 	/usr/include/pthread.h \
+	/usr/include/qt6/QtCore/QObject \
 	/usr/include/qt6/QtCore/QString \
 	/usr/include/qt6/QtCore/QVector \
 	/usr/include/qt6/QtCore/q17memory.h \
@@ -443,8 +448,10 @@ project41_autogen/timestamp: \
 	/usr/include/qt6/QtGui/qtguiglobal.h \
 	/usr/include/qt6/QtGui/qtransform.h \
 	/usr/include/qt6/QtGui/qwindowdefs.h \
+	/usr/include/qt6/QtWidgets/QDialog \
 	/usr/include/qt6/QtWidgets/QMainWindow \
 	/usr/include/qt6/QtWidgets/QWidget \
+	/usr/include/qt6/QtWidgets/qdialog.h \
 	/usr/include/qt6/QtWidgets/qmainwindow.h \
 	/usr/include/qt6/QtWidgets/qsizepolicy.h \
 	/usr/include/qt6/QtWidgets/qtabwidget.h \
@@ -831,6 +838,7 @@ project41_autogen/timestamp: \
 	/usr/share/cmake/Modules/Platform/Linux-Initialize.cmake \
 	/usr/share/cmake/Modules/Platform/Linux.cmake \
 	/usr/share/cmake/Modules/Platform/UnixPaths.cmake \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/algorithmpreviewrow.ui \
-	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/mainwindow.ui \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/algorithmpreviewrow.ui \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/mainwindow.ui \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/ui/videoinputdialog.ui \
 	/usr/bin/cmake

@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "blendinterpolator.h"
 #include "algorithmpreviewrow.h"
+#include "runners/riferunner.h"
+
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QPixmap>
@@ -16,7 +18,39 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //ALGORITHM BLEND ROW SETUP
+    //ALGORITHM
+    rifeRunner = new RifeRunner(this);
+
+    connect(rifeRunner, &RifeRunner::started,
+            this, [this]() {
+                ui->runButton->setEnabled(false);
+                ui->actionLoadFrames->setEnabled(false);
+                ui->interpolationMulComboBox->setEnabled(false);
+                ui->statusbar->showMessage("RIFE running...");
+            });
+
+    connect(rifeRunner, &RifeRunner::finished,
+            this, [this](const QVector<QImage> &frames) {
+                rifeRow->setFrames(frames);
+                updateVisibleFrames();
+
+                ui->runButton->setEnabled(true);
+                ui->actionLoadFrames->setEnabled(true);
+                ui->interpolationMulComboBox->setEnabled(true);
+                ui->statusbar->showMessage("RIFE finished", 5000);
+            });
+
+    connect(rifeRunner, &RifeRunner::failed,
+            this, [this](const QString &message) {
+                ui->runButton->setEnabled(!startFrame.isNull() &&
+                                          !endFrame.isNull());
+                ui->actionLoadFrames->setEnabled(true);
+                ui->interpolationMulComboBox->setEnabled(true);
+                ui->statusbar->showMessage("RIFE failed", 5000);
+
+                QMessageBox::warning(this, "RIFE", message);
+            });
+
     ui->algorithmPreview1->hide();
 
     blendRow = new AlgorithmPreviewRow(ui->previewRowsContainer);
@@ -27,9 +61,16 @@ MainWindow::MainWindow(QWidget *parent)
         ui->previewRowsContainer->layout()
     );
 
+    rifeRow = new AlgorithmPreviewRow(ui->previewRowsContainer);
+    rifeRow->setAlgorithmName("RIFE");
+    rifeRow->setMinimumHeight(130);
+
     if (rowsLayout) {
         //inserts a new algorithm row to the beginning of the list
         rowsLayout->insertWidget(0, blendRow);
+        blendRow->setCaptionVisible(true);
+        rowsLayout->insertWidget(1, rifeRow);
+        rifeRow->setCaptionVisible(false);
     }
 
     //SETUP INTERPOLATION MULTIPLIER COMBOBOX
@@ -111,6 +152,9 @@ void MainWindow::loadFrames(){
     startFrame = newStart;
     endFrame = newEnd;
 
+    startFramePath = startPath;
+    endFramePath = endPath;
+
     ui->contentStack->setCurrentWidget(ui->previewPage);
 
 
@@ -121,6 +165,8 @@ void MainWindow::loadFrames(){
     };
 
     blendRow->setFrames(previewFrames);
+
+    rifeRow->setFrames(previewFrames);
 
     const int maximumIndex = std::max(0, static_cast<int>(previewFrames.size()) - 3);
 
@@ -134,12 +180,15 @@ void MainWindow::loadFrames(){
 }
 
 void MainWindow::updateVisibleFrames() {
-    blendRow->setFirstVisibleFrame(
-        ui->frameSlider->value()
-        );
+    const int index = ui->frameSlider->value();
+
+    blendRow->setFirstVisibleFrame(index);
+    rifeRow->setFirstVisibleFrame(index);
 }
 
 void MainWindow::runExperiment() {
+    if (rifeRunner->isRunning()) return;
+
     if (startFrame.isNull() || endFrame.isNull()) return;
 
     const int multiplier = ui->interpolationMulComboBox->currentData().toInt();
@@ -162,6 +211,12 @@ void MainWindow::runExperiment() {
     previewFrames.append(endFrame);
     blendRow->setFrames(previewFrames);
 
+    QVector<QImage> rifeFrames(frameCount + 2);
+    rifeFrames.first() = startFrame;
+    rifeFrames.last() = endFrame;
+
+    rifeRow->setFrames(rifeFrames);
+
     const int maximumIndex = std::max(0, static_cast<int>(previewFrames.size()) - 3);
 
     ui->frameSlider->setRange(0, maximumIndex);
@@ -170,4 +225,5 @@ void MainWindow::runExperiment() {
 
     ui->contentStack->setCurrentWidget(ui->previewPage);
     updateVisibleFrames();
+    rifeRunner->start(startFrame, endFrame, multiplier);
 }

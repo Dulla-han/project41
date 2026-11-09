@@ -526,27 +526,39 @@
 	"HEADERS" : 
 	[
 		[
-			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/algorithmpreviewrow.h",
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/processing/blendinterpolator.h",
 			"MU",
-			"EWIEGA46WW/moc_algorithmpreviewrow.cpp",
+			"5QWKTM5RRA/moc_blendinterpolator.cpp",
 			null
 		],
 		[
-			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/blendinterpolator.h",
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/runners/riferunner.h",
 			"MU",
-			"EWIEGA46WW/moc_blendinterpolator.cpp",
+			"NQNMJNCMPN/moc_riferunner.cpp",
 			null
 		],
 		[
-			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/frameview.h",
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/ui/algorithmpreviewrow.h",
 			"MU",
-			"EWIEGA46WW/moc_frameview.cpp",
+			"YPKJ5OE7LN/moc_algorithmpreviewrow.cpp",
 			null
 		],
 		[
-			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/mainwindow.h",
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/ui/frameview.h",
 			"MU",
-			"EWIEGA46WW/moc_mainwindow.cpp",
+			"YPKJ5OE7LN/moc_frameview.cpp",
+			null
+		],
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/ui/mainwindow.h",
+			"MU",
+			"YPKJ5OE7LN/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/ui/videoinputdialog.h",
+			"MU",
+			"YPKJ5OE7LN/moc_videoinputdialog.cpp",
 			null
 		]
 	],
@@ -563,7 +575,9 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41",
+		"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src",
+		"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/ui",
+		"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/processing",
 		"/usr/include/qt6/QtCore",
 		"/usr/include/qt6",
 		"/usr/lib64/qt6/mkspecs/linux-g++",
@@ -610,27 +624,37 @@
 	"SOURCES" : 
 	[
 		[
-			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/algorithmpreviewrow.cpp",
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/main.cpp",
 			"MU",
 			null
 		],
 		[
-			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/blendinterpolator.cpp",
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/processing/blendinterpolator.cpp",
 			"MU",
 			null
 		],
 		[
-			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/frameview.cpp",
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/runners/riferunner.cpp",
 			"MU",
 			null
 		],
 		[
-			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/main.cpp",
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/ui/algorithmpreviewrow.cpp",
 			"MU",
 			null
 		],
 		[
-			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/mainwindow.cpp",
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/ui/frameview.cpp",
+			"MU",
+			null
+		],
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/ui/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/ui/videoinputdialog.cpp",
 			"MU",
 			null
 		]

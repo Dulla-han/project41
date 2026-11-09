@@ -1,0 +1,12 @@
+# Python environment
+.venv*/
+__pycache__/
+*.pyc
+
+# Build and Inside Settings of QT
+/build/
+/.qtcreator/
+*.user
+
+# Results of Experiments
+/algorithms/RIFE/output/
