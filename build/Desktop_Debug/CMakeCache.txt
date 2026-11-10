@@ -300,6 +300,12 @@ OPENGL_opengl_LIBRARY:FILEPATH=/usr/lib64/libOpenGL.so
 //Path to a file.
 OPENGL_xmesa_INCLUDE_DIR:PATH=OPENGL_xmesa_INCLUDE_DIR-NOTFOUND
 
+//Arguments to supply to pkg-config
+PKG_CONFIG_ARGN:STRING=
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
+
 //Additional directories where find(Qt6 ...) host Qt components
 // are searched
 QT_ADDITIONAL_HOST_PACKAGES_PREFIX_PATH:STRING=
@@ -360,6 +366,18 @@ Vulkan_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a library.
 Vulkan_LIBRARY:FILEPATH=/usr/lib64/libvulkan.so
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_avcodec:FILEPATH=/usr/lib64/libavcodec.so
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_avformat:FILEPATH=/usr/lib64/libavformat.so
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_avutil:FILEPATH=/usr/lib64/libavutil.so
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_swscale:FILEPATH=/usr/lib64/libswscale.so
 
 //Value Computed by CMake
 project41_BINARY_DIR:STATIC=/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug
@@ -536,8 +554,61 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+FFMPEG_CFLAGS:INTERNAL=-I/usr/include/ffmpeg
+FFMPEG_CFLAGS_I:INTERNAL=
+FFMPEG_CFLAGS_OTHER:INTERNAL=
+FFMPEG_FOUND:INTERNAL=1
+FFMPEG_INCLUDEDIR:INTERNAL=
+FFMPEG_INCLUDE_DIRS:INTERNAL=/usr/include/ffmpeg
+FFMPEG_LDFLAGS:INTERNAL=-L/usr/lib64;-lavformat;-lavcodec;-lswscale;-lavutil
+FFMPEG_LDFLAGS_OTHER:INTERNAL=
+FFMPEG_LIBDIR:INTERNAL=
+FFMPEG_LIBRARIES:INTERNAL=avformat;avcodec;swscale;avutil
+FFMPEG_LIBRARY_DIRS:INTERNAL=/usr/lib64
+FFMPEG_LIBS:INTERNAL=
+FFMPEG_LIBS_L:INTERNAL=
+FFMPEG_LIBS_OTHER:INTERNAL=
+FFMPEG_LIBS_PATHS:INTERNAL=
+FFMPEG_MODULE_NAME:INTERNAL=
+FFMPEG_PREFIX:INTERNAL=
+FFMPEG_STATIC_CFLAGS:INTERNAL=-I/usr/include/ffmpeg
+FFMPEG_STATIC_CFLAGS_I:INTERNAL=
+FFMPEG_STATIC_CFLAGS_OTHER:INTERNAL=
+FFMPEG_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/ffmpeg
+FFMPEG_STATIC_LDFLAGS:INTERNAL=-L/usr/lib64;-lavformat;-lm;-lxml2;-lbz2;-ldvdnav;-ldvdread;-lgme;-lmodplug;-lopenmpt;-lstdc++;-lchromaprint;-lbluray;-lgcrypt;-lgpg-error;-lgmp;-lz;-latomic;-lgnutls;-lrabbitmq;-lrist;-lsrt;-lssh;-lsmbclient;-lzmq;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-pthread;-llcms2;-lm;-latomic;-llzma;-laribcaption;-laribb24;-ldav1d;-lopencore-amrwb;-lrsvg-2;-lgdk_pixbuf-2.0;-lgio-2.0;-lcairo;-lgobject-2.0;-lglib-2.0;-lxevdb;-lzvbi;-lpthread;-lm;-lpng;-lz;-lsnappy;-lstdc++;-laom;-lvmaf;-lcodec2;-lfdk-aac;-lgsm;-lilbc;-pthread;-ljxl;-ljxl_threads;-llc3;-lmp3lame;-lm;-loapv;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-ltwolame;-lvo-amrwbenc;-lvorbis;-lvorbisenc;-lwebp;-lxeveb;-lxvidcore;-lopenh264;-L/usr/lib64/pkgconfig/../;-lvpl;-ldl;-lz;-lva;-lswresample;-lm;-lsoxr;-latomic;-lswscale;-lm;-latomic;-lavutil;-lva-drm;-lva;-lva-x11;-lva;-lvdpau;-lX11;-lgcrypt;-lgpg-error;-lm;-lz;-ldrm;-L/usr/lib64/pkgconfig/../;-lvpl;-ldl;-lva;-latomic;-pthread;-lX11
+FFMPEG_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread;-pthread;-pthread
+FFMPEG_STATIC_LIBDIR:INTERNAL=
+FFMPEG_STATIC_LIBRARIES:INTERNAL=avformat;m;xml2;bz2;dvdnav;dvdread;gme;modplug;openmpt;stdc++;chromaprint;bluray;gcrypt;gpg-error;gmp;z;atomic;gnutls;rabbitmq;rist;srt;ssh;smbclient;zmq;avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;lcms2;m;atomic;lzma;aribcaption;aribb24;dav1d;opencore-amrwb;rsvg-2;gdk_pixbuf-2.0;gio-2.0;cairo;gobject-2.0;glib-2.0;xevdb;zvbi;pthread;m;png;z;snappy;stdc++;aom;vmaf;codec2;fdk-aac;gsm;ilbc;jxl;jxl_threads;lc3;mp3lame;m;oapv;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;twolame;vo-amrwbenc;vorbis;vorbisenc;webp;xeveb;xvidcore;openh264;vpl;dl;z;va;swresample;m;soxr;atomic;swscale;m;atomic;avutil;va-drm;va;va-x11;va;vdpau;X11;gcrypt;gpg-error;m;z;drm;vpl;dl;va;atomic;X11
+FFMPEG_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib64;/usr/lib64/pkgconfig/../;/usr/lib64/pkgconfig/../
+FFMPEG_STATIC_LIBS:INTERNAL=
+FFMPEG_STATIC_LIBS_L:INTERNAL=
+FFMPEG_STATIC_LIBS_OTHER:INTERNAL=
+FFMPEG_STATIC_LIBS_PATHS:INTERNAL=
+FFMPEG_VERSION:INTERNAL=
+FFMPEG_libavcodec_INCLUDEDIR:INTERNAL=/usr/include/ffmpeg
+FFMPEG_libavcodec_LIBDIR:INTERNAL=/usr/lib64
+FFMPEG_libavcodec_MODULE_NAME:INTERNAL=libavcodec
+FFMPEG_libavcodec_PREFIX:INTERNAL=/usr
+FFMPEG_libavcodec_VERSION:INTERNAL=63.1.102
+FFMPEG_libavformat_INCLUDEDIR:INTERNAL=/usr/include/ffmpeg
+FFMPEG_libavformat_LIBDIR:INTERNAL=/usr/lib64
+FFMPEG_libavformat_MODULE_NAME:INTERNAL=libavformat
+FFMPEG_libavformat_PREFIX:INTERNAL=/usr
+FFMPEG_libavformat_VERSION:INTERNAL=63.1.102
+FFMPEG_libavutil_INCLUDEDIR:INTERNAL=/usr/include/ffmpeg
+FFMPEG_libavutil_LIBDIR:INTERNAL=/usr/lib64
+FFMPEG_libavutil_MODULE_NAME:INTERNAL=libavutil
+FFMPEG_libavutil_PREFIX:INTERNAL=/usr
+FFMPEG_libavutil_VERSION:INTERNAL=61.1.102
+FFMPEG_libswscale_INCLUDEDIR:INTERNAL=/usr/include/ffmpeg
+FFMPEG_libswscale_LIBDIR:INTERNAL=/usr/lib64
+FFMPEG_libswscale_MODULE_NAME:INTERNAL=libswscale
+FFMPEG_libswscale_PREFIX:INTERNAL=/usr
+FFMPEG_libswscale_VERSION:INTERNAL=10.1.102
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib64/libOpenGL.so][/usr/lib64/libGLX.so][/usr/include][ ][v()]
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v2.5.1()]
 //Test HAVE_STDATOMIC
 HAVE_STDATOMIC:INTERNAL=1
 //ADVANCED property for variable: OPENGL_EGL_INCLUDE_DIR
@@ -566,6 +637,10 @@ OPENGL_glx_LIBRARY-ADVANCED:INTERNAL=1
 OPENGL_opengl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_xmesa_INCLUDE_DIR
 OPENGL_xmesa_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_ARGN
+PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 QTCREATOR_CMAKE_HELPER_DIRECTORY:INTERNAL=/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/.qtcreator/cmake-helper
 //Qt feature: abstractbutton (from target Qt6::Widgets)
 QT_FEATURE_abstractbutton:INTERNAL=ON
@@ -1420,4 +1495,15 @@ Vulkan_INCLUDE_DIR-ADVANCED:INTERNAL=1
 Vulkan_LIBRARY-ADVANCED:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/tmp
+__pkg_config_arguments_FFMPEG:INTERNAL=REQUIRED;IMPORTED_TARGET;libavformat;libavcodec;libavutil;libswscale
+__pkg_config_checked_FFMPEG:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_avcodec
+pkgcfg_lib_FFMPEG_avcodec-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_avformat
+pkgcfg_lib_FFMPEG_avformat-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_avutil
+pkgcfg_lib_FFMPEG_avutil-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_swscale
+pkgcfg_lib_FFMPEG_swscale-ADVANCED:INTERNAL=1
+prefix_result:INTERNAL=/usr/lib64
 

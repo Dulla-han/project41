@@ -517,7 +517,10 @@
 		"/usr/lib64/cmake/Qt6/QtPublicWalkLibsHelpers.cmake",
 		"/usr/lib64/cmake/Qt6/QtPublicWindowsHelpers.cmake",
 		"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
-		"/usr/lib64/cmake/Qt6/Qt6Dependencies.cmake"
+		"/usr/lib64/cmake/Qt6/Qt6Dependencies.cmake",
+		"/usr/share/cmake/Modules/FindPkgConfig.cmake",
+		"/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake",
+		"/usr/share/cmake/Modules/FindPackageMessage.cmake"
 	],
 	"CMAKE_SOURCE_DIR" : "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41",
 	"CROSS_CONFIG" : false,
@@ -525,6 +528,12 @@
 	"DEP_FILE_RULE_NAME" : "project41_autogen/timestamp",
 	"HEADERS" : 
 	[
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/input/videoreader.h",
+			"MU",
+			"NNGSYZYP4R/moc_videoreader.cpp",
+			null
+		],
 		[
 			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/processing/blendinterpolator.h",
 			"MU",
@@ -583,6 +592,7 @@
 		"/usr/lib64/qt6/mkspecs/linux-g++",
 		"/usr/include/qt6/QtWidgets",
 		"/usr/include/qt6/QtGui",
+		"/usr/include/ffmpeg",
 		"/usr/include",
 		"/usr/include/c++/16",
 		"/usr/include/c++/16/x86_64-redhat-linux",
@@ -623,6 +633,11 @@
 	"SETTINGS_FILE" : "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/project41_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/input/videoreader.cpp",
+			"MU",
+			null
+		],
 		[
 			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/main.cpp",
 			"MU",

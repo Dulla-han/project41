@@ -17,9 +17,7 @@ bool RifeRunner::isRunning() const
     return running;
 }
 
-void RifeRunner::start(const QImage &startFrame,
-                       const QImage &endFrame,
-                       int multiplier)
+void RifeRunner::start(const QImage &startFrame,const QImage &endFrame, int multiplier)
 {
     if (running)
         return;
@@ -45,12 +43,9 @@ void RifeRunner::start(const QImage &startFrame,
         }
     }
 
-    const QString pythonPath =
-        projectDir.absoluteFilePath(".venv-rife/bin/python");
-    const QString scriptPath =
-        projectDir.absoluteFilePath("algorithms/RIFE/inference_img.py");
-    const QString modelPath =
-        projectDir.absoluteFilePath("algorithms/RIFE/train_log");
+    const QString pythonPath = projectDir.filePath(".venv-rife/bin/python");
+    const QString scriptPath = projectDir.filePath("algorithms/RIFE/inference_img.py");
+    const QString modelPath = projectDir.filePath("algorithms/RIFE/train_log");
 
     if (!QFileInfo::exists(pythonPath)) {
         emit failed("Unable to find Python in .venv-rife");
@@ -79,10 +74,15 @@ void RifeRunner::start(const QImage &startFrame,
 
     const QSize expectedSize = startFrame.size();
 
+    //makes a new process to run RIFE on
     auto *process = new QProcess(this);
+    //meging the message and error outputs
     process->setProcessChannelMode(QProcess::MergedChannels);
+
+    //sets the working folder of the running program
     process->setWorkingDirectory(workDir->path());
 
+    //a small function for cleanup at the end or the error occurrences
     auto cleanup = [this, process, workDir]() {
         running = false;
         process->deleteLater();
@@ -90,6 +90,7 @@ void RifeRunner::start(const QImage &startFrame,
 
     connect(process, &QProcess::errorOccurred,
             this, [this, process, cleanup](QProcess::ProcessError error) {
+        //did it even start
                 if (error == QProcess::FailedToStart) {
                     const QString message = process->errorString();
                     cleanup();
@@ -98,13 +99,11 @@ void RifeRunner::start(const QImage &startFrame,
             });
 
     connect(process, &QProcess::finished,
-            this,
-            [this, process, workDir, multiplier, expectedSize, cleanup]
+            this, [this, process, workDir, multiplier, expectedSize, cleanup]
             (int exitCode, QProcess::ExitStatus status) {
+        //print logs for unsuccessful program completion
                 if (status != QProcess::NormalExit || exitCode != 0) {
-                    const QString log =
-                        QString::fromLocal8Bit(process->readAll());
-
+                    const QString log = QString::fromLocal8Bit(process->readAll());
                     cleanup();
                     emit failed("RIFE calculation failed:\n" + log);
                     return;
@@ -135,9 +134,9 @@ void RifeRunner::start(const QImage &startFrame,
     emit started();
 
     process->start(pythonPath, QStringList{
-                                   scriptPath,
-                                   "--img", firstPath, lastPath,
-                                   "--exp", QString::number(exponent),
-                                   "--model", modelPath
-                               });
+                scriptPath,
+               "--img", firstPath, lastPath,
+               "--exp", QString::number(exponent),
+               "--model", modelPath
+            });
 }
