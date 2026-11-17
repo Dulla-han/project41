@@ -3,6 +3,7 @@
 #include "blendinterpolator.h"
 #include "algorithmpreviewrow.h"
 #include "runners/riferunner.h"
+#include "videoinputdialog.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -92,7 +93,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     //BUTTON AND MENU SETUP
     ui->runButton->setEnabled(false);
-    ui->actionLoadVideo->setEnabled(false);
+    //VIDEO INPUT SETUP
+    ui->actionLoadVideo->setEnabled(true);
+    connect(ui->actionLoadVideo, &QAction::triggered,
+            this, [this] () {
+        VideoInputDialog dialog(this);
+        dialog.exec();
+    });
 
     //FRAME SETUP
     connect(ui->actionLoadFrames, &QAction::triggered,

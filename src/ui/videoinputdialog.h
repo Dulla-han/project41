@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "input/videoreader.h"
+
 namespace Ui {
 class VideoInputDialog;
 }
@@ -17,6 +19,7 @@ public:
 
 private:
     Ui::VideoInputDialog *ui;
+    VideoReader videoReader;
 };
 
 #endif // VIDEOINPUTDIALOG_H

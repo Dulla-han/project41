@@ -32,7 +32,7 @@ bool VideoReader::open(const QString &path) {
         return false;
     }
 
-    result = avformat_find_stream_info(formatContext, nulltptr);
+    result = avformat_find_stream_info(formatContext, nullptr);
 
     if (result < 0) {
         lastError = "Unable to read stream information: " + describeError(result);
@@ -57,8 +57,37 @@ bool VideoReader::open(const QString &path) {
 
     videoInfo.width = stream->codecpar->width;
     videoInfo.height = stream->codecpar->height;
-    videoInfo.frameCount= stream->codecpar->nb_frames;
+    videoInfo.frameCount= stream->nb_frames;
 
 
+    const AVRational fps = stream->avg_frame_rate;
 
+    if(fps.num > 0 && fps.den > 0) {
+        videoInfo.averageFps = av_q2d(fps);
+    }
+
+    if (stream->duration != AV_NOPTS_VALUE) {
+        videoInfo.durationSeconds = stream->duration * av_q2d(stream->time_base);
+    } else if (formatContext->duration != AV_NOPTS_VALUE) {
+        videoInfo.durationSeconds = static_cast<double>(formatContext->duration) / AV_TIME_BASE;
+    }
+
+    return true;
+}
+
+void VideoReader::close(){
+    if (formatContext) {
+        avformat_close_input(&formatContext);
+    }
+
+    videoStreamIndex = -1;
+    videoInfo = VideoInfo();
+}
+
+const VideoInfo &VideoReader::info() const {
+    return videoInfo;
+}
+
+QString VideoReader::errorString() const {
+    return lastError;
 }

@@ -22,7 +22,7 @@ public:
     ~VideoReader();
 
     VideoReader(const VideoReader &) = delete;
-    VideoReader &operator(const VideoReader &) = delete;
+    VideoReader &operator=(const VideoReader &) = delete;
 
     bool open(const QString &path);
     void close();
