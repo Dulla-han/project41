@@ -3,7 +3,12 @@
 extern "C" {
 #include <libavformat/avformat.h>
 #include <libavutil/error.h>
+#include <libavcodec/avcodec.h>
+#include <libavutil/error.h>
+#include <libswscale/swscale.h>
 }
+
+#include <cerrno>
 
 namespace {
 
@@ -72,16 +77,226 @@ bool VideoReader::open(const QString &path) {
         videoInfo.durationSeconds = static_cast<double>(formatContext->duration) / AV_TIME_BASE;
     }
 
+    //finds suitable decoder
+    const AVCodec *decoder = avcodec_find_decoder(stream->codecpar->codec_id);
+
+    if (!decoder) {
+        lastError = "No decoder available for this video.";
+        close();
+        return false;
+    }
+
+    codecContext = avcodec_alloc_context3(decoder);
+
+    if (!codecContext) {
+        lastError = "Unable to allocate the video decoder.";
+        close();
+        return false;
+    }
+
+    result = avcodec_parameters_to_context(
+        codecContext,
+        stream->codecpar
+    );
+
+    if (result < 0) {
+        lastError = "Unable to copy codec parameters: "
+                    + describeError(result);
+        close();
+        return false;
+    }
+
+    codecContext->pkt_timebase = stream->time_base;
+
+    result = avcodec_open2(codecContext, decoder, nullptr);
+
+    if (result < 0) {
+        lastError = "Unable to open the video decoder: "
+                    + describeError(result);
+        close();
+        return false;
+    }
+
+    packet = av_packet_alloc();
+    decodedFrame = av_frame_alloc();
+
+    if (!packet || !decodedFrame) {
+        lastError = "Unable to allocate decoding buffers.";
+        close();
+        return false;
+    }
+
     return true;
 }
 
 void VideoReader::close(){
-    if (formatContext) {
-        avformat_close_input(&formatContext);
-    }
+    sws_freeContext(scaleContext);
+    scaleContext = nullptr;
+
+    av_frame_free(&decodedFrame);
+    av_packet_free(&packet);
+    avcodec_free_context(&codecContext);
+    avformat_close_input(&formatContext);
 
     videoStreamIndex = -1;
+    nextFrameIndex = 0;
+    firstTimestamp = 0;
+    hasFirstTimestamp = false;
     videoInfo = VideoInfo();
+    inputEnded = false;
+}
+
+bool VideoReader::readNextFrame(VideoFrame &frame) {
+    frame = VideoFrame{};
+    lastError.clear();
+
+    if (!codecContext || !packet || !decodedFrame) {
+        lastError = "No video is open.";
+        return false;
+    }
+
+    while (true) {
+        int result = avcodec_receive_frame(
+            codecContext,
+            decodedFrame
+            );
+
+        if (result == 0) {
+            const int width = decodedFrame->width;
+            const int height = decodedFrame->height;
+
+            double timeSeconds = -1.0;
+
+            const qint64 timestamp = decodedFrame->best_effort_timestamp;
+
+            if (timestamp != AV_NOPTS_VALUE) {
+                if (!hasFirstTimestamp) {
+                    firstTimestamp = timestamp;
+                    hasFirstTimestamp = true;
+                }
+
+                const AVStream *stream = formatContext->streams[videoStreamIndex];
+
+                timeSeconds = (static_cast<double>(timestamp)
+                               - static_cast<double>(firstTimestamp))
+                              * av_q2d(stream->time_base);
+            }
+
+            scaleContext = sws_getCachedContext(
+                scaleContext,
+                width,
+                height,
+                static_cast<AVPixelFormat>(decodedFrame->format),
+                width,
+                height,
+                AV_PIX_FMT_RGB24,
+                SWS_BILINEAR,
+                nullptr,
+                nullptr,
+                nullptr
+                );
+
+            if (!scaleContext) {
+                lastError = "Unable to prepare image conversion.";
+                av_frame_unref(decodedFrame);
+                return false;
+            }
+
+            QImage converted (
+                width,
+                height,
+                QImage::Format_RGB888
+                );
+
+            if (converted.isNull()) {
+                lastError = "Unable to allocate the output image.";
+                av_frame_unref(decodedFrame);
+                return false;
+            }
+
+            uint8_t *destinationData[4] = {
+                converted.bits(), nullptr, nullptr, nullptr
+            };
+
+            int destinationStride[4] = {
+                static_cast<int>(converted.bytesPerLine()),
+                0,0,0
+            };
+
+            result = sws_scale(
+                scaleContext,
+                decodedFrame->data,
+                decodedFrame->linesize,
+                0,
+                height,
+                destinationData,
+                destinationStride
+                );
+
+            av_frame_unref(decodedFrame);
+
+            if (result != height) {
+                lastError = "Unable to convert the video frame.";
+                return false;
+            }
+
+            frame.image = converted;
+            frame.index = nextFrameIndex;
+            frame.timeSeconds = timeSeconds;
+
+            ++nextFrameIndex;
+
+            return true;
+        }
+
+        if (result == AVERROR_EOF) {
+            return false;
+        }
+
+        if (result != AVERROR(EAGAIN)) {
+            lastError = "Unable to decode a frame: "
+                        + describeError(result);
+            return false;
+        }
+
+        if (inputEnded) {
+            lastError = "The decoder requested data after end of input.";
+            return false;
+        }
+        //unable to save the save loaded frame into image argument
+        //find the next packet belonging to our video stream
+        while(true) {
+            result = av_read_frame(formatContext, packet);
+
+            if (result < 0) {
+                break;
+            }
+
+            if (packet->stream_index == videoStreamIndex) {
+                break;
+            }
+
+            av_packet_unref(packet);
+        }
+
+        if (result == AVERROR_EOF) {
+            inputEnded = true;
+            result = avcodec_send_packet(codecContext, nullptr);
+        } else if (result < 0) {
+            lastError = "Unable to read video data: "
+                        + describeError(result);
+            return false;
+        } else {
+            result = avcodec_send_packet(codecContext, packet);
+            av_packet_unref(packet);
+        }
+
+        if (result < 0) {
+            lastError = "Unable to send data to the decoder: "
+                        + describeError(result);
+            return false;
+        }
+    }
 }
 
 const VideoInfo &VideoReader::info() const {

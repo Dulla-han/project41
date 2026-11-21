@@ -62,7 +62,7 @@ public:
     QVBoxLayout *verticalLayout_2;
     QSpacerItem *verticalSpacer;
     QWidget *settingsPanel;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_2;
     QLabel *interpolationMulLabel;
     QComboBox *interpolationMulComboBox;
@@ -229,18 +229,18 @@ public:
         settingsPanel->setStyleSheet(QString::fromUtf8("QWidget#settingsPanel {\n"
 "	background-color: rgb(192, 28, 40);\n"
 "}"));
-        widget = new QWidget(settingsPanel);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(10, 0, 256, 31));
-        horizontalLayout_2 = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(settingsPanel);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(10, 0, 256, 31));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        interpolationMulLabel = new QLabel(widget);
+        interpolationMulLabel = new QLabel(layoutWidget);
         interpolationMulLabel->setObjectName("interpolationMulLabel");
 
         horizontalLayout_2->addWidget(interpolationMulLabel);
 
-        interpolationMulComboBox = new QComboBox(widget);
+        interpolationMulComboBox = new QComboBox(layoutWidget);
         interpolationMulComboBox->addItem(QString());
         interpolationMulComboBox->addItem(QString());
         interpolationMulComboBox->addItem(QString());

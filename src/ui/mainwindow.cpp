@@ -15,6 +15,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    //makes class able to access the UI objects
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -86,14 +87,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->frameSlider->setPageStep(1);
     ui->frameSlider->setEnabled(false);
 
-    connect(ui->frameSlider, & QSlider::valueChanged,
+    connect(ui->frameSlider, &QSlider::valueChanged,
             this, [this](int) {
         updateVisibleFrames();
     });
 
     //BUTTON AND MENU SETUP
     ui->runButton->setEnabled(false);
-    //VIDEO INPUT SETUP
+    //VIDEO DIALOG INPUT SETUP
     ui->actionLoadVideo->setEnabled(true);
     connect(ui->actionLoadVideo, &QAction::triggered,
             this, [this] () {
@@ -102,20 +103,23 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     //FRAME SETUP
+    //LOAD
     connect(ui->actionLoadFrames, &QAction::triggered,
             this, &MainWindow::loadFrames);
 
+    //PREVIEW PAGE SWITCH
     connect(ui->previewButton, &QPushButton::clicked,
             this, [this](){
         ui->contentStack->setCurrentWidget(ui->previewPage);
     });
 
+    //BENCHMARK PAGE BUTTON
     connect(ui->benchmarkButton, &QPushButton::clicked,
             this, [this](){
         ui->contentStack->setCurrentWidget(ui->benchmarkPage);
     });
 
-    //EXPERIMENT SETUP
+    //ALGORITHM RUN SETUP
     connect(ui->runButton, &QPushButton::clicked,
             this, &MainWindow::runExperiment);
 }
@@ -164,7 +168,7 @@ void MainWindow::loadFrames(){
 
     ui->contentStack->setCurrentWidget(ui->previewPage);
 
-
+    //adding 3 Images to the previewFrames
     previewFrames = {
         startFrame,
         QImage(),

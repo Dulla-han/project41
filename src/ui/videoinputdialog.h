@@ -20,6 +20,15 @@ public:
 private:
     Ui::VideoInputDialog *ui;
     VideoReader videoReader;
+
+    void displayFrame(const VideoFrame &frame);
+
+    qint64 startFrameIndex = -1;
+    qint64 endFrameIndex = -1;
+
+    void updateSelection();
+
+    VideoFrame currentFrame;
 };
 
 #endif // VIDEOINPUTDIALOG_H

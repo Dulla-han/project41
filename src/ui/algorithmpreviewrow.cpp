@@ -32,6 +32,7 @@ void AlgorithmPreviewRow::setFirstVisibleFrame(int index) {
 }
 
 void AlgorithmPreviewRow::updateFrames() {
+    //creates an accessible array of UI objects
     FrameView *views[] = {
         ui->frameView1,
         ui->frameView2,
@@ -46,6 +47,7 @@ void AlgorithmPreviewRow::updateFrames() {
 
     for (int slot = 0; slot < 3; slot++) {
         const int index = firstVisibleFrame + slot;
+        //accessing the array objects one at a time
         FrameView *view = views[slot];
         QLabel *caption = captions[slot];
 
@@ -86,7 +88,9 @@ void AlgorithmPreviewRow::resizeEvent(QResizeEvent *event) {
     //There are 3 spaces
     const int availableWidth = width() - margins.left() - margins.right() - 80 - 3 * spacing;
 
+    //compute the remaining amount of space
     const int imageWidth = std::max(120, availableWidth / 3);
+    //depending on width we compute height to fit the 16:9 ratio
     const int imageHeight = std::max(90, (imageWidth * 9 + 15) / 16);
 
     const auto columnMargins = ui->verticalLayout->contentsMargins();

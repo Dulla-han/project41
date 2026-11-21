@@ -68,6 +68,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="nextFrameButton">
+       <property name="text">
+        <string>Next Frame</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QSlider" name="sourceFrameSlider">
        <property name="maximum">
         <number>0</number>

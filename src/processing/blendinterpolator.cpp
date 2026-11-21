@@ -7,8 +7,6 @@ QImage interpolateBlend(const QImage &start, const QImage &end, double t) {
         return QImage();
     }
 
-    t = std::clamp(t, 0.0, 1.0);
-
     const QImage first = start.convertToFormat(QImage::Format_RGB32);
     const QImage second = end.convertToFormat(QImage::Format_RGB32);
 

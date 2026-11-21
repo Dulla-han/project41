@@ -28,12 +28,6 @@ void RifeRunner::start(const QImage &startFrame,const QImage &endFrame, int mult
         return;
     }
 
-    if (multiplier != 2 && multiplier != 4 &&
-        multiplier != 8 && multiplier != 16) {
-        emit failed("Not supported multiplier of RIFE");
-        return;
-    }
-
     QDir projectDir(QCoreApplication::applicationDirPath());
 
     while (!projectDir.exists("algorithms/RIFE/inference_img.py")) {

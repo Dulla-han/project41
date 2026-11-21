@@ -278,7 +278,7 @@
 	background-color: rgb(192, 28, 40);
 }</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
