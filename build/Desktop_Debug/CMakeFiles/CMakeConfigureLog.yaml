@@ -3759,3 +3759,140 @@ events:
       CMAKE_SYSTEM_LIBRARY_PATH:
         - "/usr/lib/X11"
 ...
+
+---
+events:
+  -
+    kind: "find_package-v1"
+    backtrace:
+      - "build/Desktop_Debug/.qtcreator/cmake-helper/maintenance_tool_provider.cmake:235 (find_package)"
+      - "CMakeLists.txt:8 (find_package)"
+    name: "Qt6Concurrent"
+    configs:
+      -
+        filename: "Qt6Concurrent.cps"
+        kind: "cps"
+      -
+        filename: "qt6concurrent.cps"
+        kind: "cps"
+      -
+        filename: "Qt6ConcurrentConfig.cmake"
+        kind: "cmake"
+      -
+        filename: "qt6concurrent-config.cmake"
+        kind: "cmake"
+    version_request:
+      exact: false
+    settings:
+      required: "optional"
+      quiet: true
+      global: false
+      policy_scope: true
+      bypass_provider: true
+      names:
+        - "Qt6Concurrent"
+      search_paths:
+        - "/usr"
+        - "/usr/lib64/cmake/Qt6"
+        - "/usr/lib64/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"
+        - "/usr/lib64/cmake/Qt6/3rdparty/kwin"
+      path_suffixes:
+        - ""
+      paths:
+        CMAKE_FIND_USE_CMAKE_PATH: false
+        CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+        CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+        CMAKE_FIND_USE_INSTALL_PREFIX: true
+        CMAKE_FIND_USE_PACKAGE_ROOT_PATH: true
+        CMAKE_FIND_USE_CMAKE_PACKAGE_REGISTRY: true
+        CMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY: true
+        CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
+    candidates:
+      -
+        path: "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/pkgRedirects/Qt6ConcurrentConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/pkgRedirects/qt6concurrent-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/pkgRedirects/lib64/cps/Qt6Concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/pkgRedirects/lib64/cps/qt6concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/pkgRedirects/lib/cps/Qt6Concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/pkgRedirects/lib/cps/qt6concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/pkgRedirects/share/cps/Qt6Concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/CMakeFiles/pkgRedirects/share/cps/qt6concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/Qt6ConcurrentConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/qt6concurrent-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cps/Qt6Concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib64/cps/qt6concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cps/Qt6Concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/lib/cps/qt6concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/share/cps/Qt6Concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "/usr/share/cps/qt6concurrent.cps"
+        mode: "cps"
+        reason: "no_exist"
+    found:
+      path: "/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake"
+      mode: "config"
+      version: "6.11.2"
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "/usr"
+      ENV{PATH}:
+        - "/home/dullahan/.local/bin"
+        - "/home/dullahan/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+      CMAKE_INSTALL_PREFIX: "/tmp"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/tmp"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+...

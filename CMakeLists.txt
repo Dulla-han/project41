@@ -5,7 +5,7 @@ project(project41 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Concurrent)
 find_package(PkgConfig REQUIRED)
 
 pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET
@@ -42,6 +42,9 @@ qt_add_executable(project41
     src/ui/videoinputdialog.cpp
     src/ui/videoinputdialog.ui
     src/input/videoreader.h src/input/videoreader.cpp
+
+    src/input/videoselection.h
+    src/input/videoselection.cpp
 )
 
 target_include_directories(project41 PRIVATE
@@ -53,4 +56,5 @@ target_include_directories(project41 PRIVATE
 target_link_libraries(project41 PRIVATE
     Qt6::Widgets
     PkgConfig::FFMPEG
+    Qt6::Concurrent
 )

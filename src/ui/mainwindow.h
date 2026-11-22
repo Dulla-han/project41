@@ -6,6 +6,8 @@
 #include <QVector>
 #include <QString>
 
+#include "input/videoselection.h"
+
 class AlgorithmPreviewRow;
 class RifeRunner;
 
@@ -25,6 +27,10 @@ private:
     void loadFrames();
     void updateVisibleFrames();
     void runExperiment();
+    //the currently loaded input is replaced only after successful loading
+    void loadVideoSelection(const VideoSelection &selection);
+
+
 
     QVector<QImage> previewFrames;
 
@@ -40,6 +46,10 @@ private:
 
     QString startFramePath;
     QString endFramePath;
+
+    VideoSelection videoSelection;
+    VideoSequence videoSequence;
+    bool videoLoading = false;
 
 };
 

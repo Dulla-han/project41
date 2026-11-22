@@ -83,10 +83,12 @@ VideoInputDialog::VideoInputDialog(QWidget *parent)
             return;
         }
 
+        //reset and ready for the next input video
         ui->sourceFrameView->setImage(QImage{});
         ui->frameNumberLabel->setText("Frame: -");
         ui->nextFrameButton->setEnabled(false);
         currentFrame = VideoFrame{};
+        videoPath.clear();
 
         startFrameIndex = -1;
         endFrameIndex = -1;
@@ -147,6 +149,8 @@ VideoInputDialog::VideoInputDialog(QWidget *parent)
             return;
         }
 
+        //successful first frame load
+        videoPath = path;
         displayFrame(firstFrame);
 
 
@@ -154,6 +158,16 @@ VideoInputDialog::VideoInputDialog(QWidget *parent)
         ui->setEndButton->setEnabled(true);
         ui->nextFrameButton->setToolTip(QString{});
         ui->nextFrameButton->setEnabled(true);
+    });
+
+    connect(ui->useSelectionButton, &QPushButton::clicked,
+            this, [this](){
+        if (videoPath.isEmpty() || startFrameIndex < 0
+            || endFrameIndex <= startFrameIndex) {
+            return;
+        }
+
+        accept();
     });
 }
 
@@ -210,4 +224,16 @@ void VideoInputDialog::updateSelection() {
 
     ui->useSelectionButton->setEnabled(valid);
     ui->keepEverySpinBox->setEnabled(valid);
+}
+
+
+VideoSelection VideoInputDialog::selection() const {
+    VideoSelection result;
+
+    result.path = videoPath;
+    result.startFrameIndex = startFrameIndex;
+    result.endFrameIndex = endFrameIndex;
+    result.keepEvery = ui->keepEverySpinBox->value();
+
+    return result;
 }

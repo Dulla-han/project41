@@ -8,6 +8,8 @@ project41_autogen/timestamp: \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/build/Desktop_Debug/project41_autogen/moc_predefs.h \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/input/videoreader.cpp \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/input/videoreader.h \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/input/videoselection.cpp \
+	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/input/videoselection.h \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/main.cpp \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/processing/blendinterpolator.cpp \
 	/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan\ Kul/project41/src/processing/blendinterpolator.h \

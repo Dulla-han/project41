@@ -467,6 +467,16 @@
 		"/usr/lib64/cmake/Qt6Widgets/Qt6WidgetsMacros.cmake",
 		"/usr/lib64/cmake/Qt6Widgets/Qt6WidgetsPlugins.cmake",
 		"/usr/lib64/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake",
+		"/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake",
+		"/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake",
+		"/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake",
+		"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+		"/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake",
+		"/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentTargetsPrecheck.cmake",
+		"/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentTargets.cmake",
+		"/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake",
+		"/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake",
+		"/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake",
 		"/usr/lib64/cmake/Qt6/Qt6ConfigVersion.cmake",
 		"/usr/lib64/cmake/Qt6/Qt6ConfigVersionImpl.cmake",
 		"/usr/lib64/cmake/Qt6/Qt6Config.cmake",
@@ -535,6 +545,12 @@
 			null
 		],
 		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/input/videoselection.h",
+			"MU",
+			"NNGSYZYP4R/moc_videoselection.cpp",
+			null
+		],
+		[
 			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/processing/blendinterpolator.h",
 			"MU",
 			"5QWKTM5RRA/moc_blendinterpolator.cpp",
@@ -574,7 +590,14 @@
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/include",
 	"MOC_COMPILATION_FILE" : "/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/build/Desktop_Debug/project41_autogen/mocs_compilation.cpp",
-	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_QML_DEBUG", "QT_WIDGETS_LIB" ],
+	"MOC_DEFINITIONS" : 
+	[
+		"QT_CONCURRENT_LIB",
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_QML_DEBUG",
+		"QT_WIDGETS_LIB"
+	],
 	"MOC_DEPEND_FILTERS" : 
 	[
 		[
@@ -593,6 +616,7 @@
 		"/usr/include/qt6/QtWidgets",
 		"/usr/include/qt6/QtGui",
 		"/usr/include/ffmpeg",
+		"/usr/include/qt6/QtConcurrent",
 		"/usr/include",
 		"/usr/include/c++/16",
 		"/usr/include/c++/16/x86_64-redhat-linux",
@@ -635,6 +659,11 @@
 	[
 		[
 			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/input/videoreader.cpp",
+			"MU",
+			null
+		],
+		[
+			"/run/media/dullahan/OS/Users/kubi/Magic/CVUT/Bakadan Kul/project41/src/input/videoselection.cpp",
 			"MU",
 			null
 		],

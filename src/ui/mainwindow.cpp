@@ -12,6 +12,8 @@
 #include <QSlider>
 #include <algorithm>
 #include <QVBoxLayout>
+#include <QFutureWatcher>
+#include <QtConcurrentRun>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -98,8 +100,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionLoadVideo->setEnabled(true);
     connect(ui->actionLoadVideo, &QAction::triggered,
             this, [this] () {
+        if (videoLoading || rifeRunner->isRunning()) {
+            return;
+        }
+
         VideoInputDialog dialog(this);
-        dialog.exec();
+
+        //cancel leaves the previously stored selection unchanged
+        if (dialog.exec() != QDialog::Accepted) {
+            return;
+        }
+
+        loadVideoSelection(dialog.selection());
     });
 
     //FRAME SETUP
@@ -237,4 +249,70 @@ void MainWindow::runExperiment() {
     ui->contentStack->setCurrentWidget(ui->previewPage);
     updateVisibleFrames();
     rifeRunner->start(startFrame, endFrame, multiplier);
+}
+
+void MainWindow::loadVideoSelection(const VideoSelection &selection) {
+    if (videoLoading || rifeRunner->isRunning()) {
+        return;
+    }
+
+    videoLoading = true;
+
+    ui->runButton->setEnabled(false);
+    ui->actionLoadFrames->setEnabled(false);
+    ui->actionLoadVideo->setEnabled(false);
+    ui->statusbar->showMessage("Loading video frames...");
+
+    //watches the result and is automatically destroyed with the window
+    auto *watcher = new QFutureWatcher<VideoSequence>(this);
+
+    connect(watcher, &QFutureWatcher<VideoSequence>::finished,
+            this, [this, watcher, selection]() {
+        const VideoSequence result = watcher->result();
+        watcher->deleteLater();
+
+        videoLoading = false;
+
+        ui->actionLoadFrames->setEnabled(true);
+        ui->actionLoadVideo->setEnabled(true);
+
+        if (!result.error.isEmpty()) {
+            ui->runButton->setEnabled(!startFrame.isNull() &&
+                                      !endFrame.isNull());
+
+            ui->statusbar->showMessage("Video loading failed", 5000);
+
+            QMessageBox::warning(this, "Video Error", result.error);
+
+            return;
+        }
+
+        videoSelection = selection;
+        videoSequence = result;
+
+        startFrame = QImage{};
+        endFrame = QImage{};
+        startFramePath.clear();
+        endFramePath.clear();
+
+        previewFrames.clear();
+        blendRow->setFrames(previewFrames);
+        rifeRow->setFrames(previewFrames);
+
+        ui->frameSlider->setRange(0, 0);
+        ui->frameSlider->setEnabled(false);
+        ui->runButton->setEnabled(false);
+
+        ui->statusbar->showMessage(QString("Loaded %1 original frames | %2 algorithm input frames")
+                                       .arg(videoSequence.originals.size())
+                                       .arg(videoSequence.inputPositions.size()));
+
+
+    });
+
+    //capture only selection by value
+    //the worker doesn't depend on the main window remaining alive
+    watcher->setFuture(QtConcurrent::run([selection](){
+        return loadVideoSequence(selection);
+    });
 }

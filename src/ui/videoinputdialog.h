@@ -4,6 +4,7 @@
 #include <QDialog>
 
 #include "input/videoreader.h"
+#include "input/videoselection.h"
 
 namespace Ui {
 class VideoInputDialog;
@@ -16,6 +17,8 @@ class VideoInputDialog : public QDialog
 public:
     explicit VideoInputDialog(QWidget *parent = nullptr);
     ~VideoInputDialog();
+    //returns the selected video path and frame range
+    VideoSelection selection() const;
 
 private:
     Ui::VideoInputDialog *ui;
@@ -25,6 +28,8 @@ private:
 
     qint64 startFrameIndex = -1;
     qint64 endFrameIndex = -1;
+
+    QString videoPath;
 
     void updateSelection();
 
