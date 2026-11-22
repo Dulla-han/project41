@@ -20,7 +20,7 @@ void AlgorithmPreviewRow::setAlgorithmName(const QString &name) {
     ui->algorithmNameLabel->setText(name);
 }
 
-void AlgorithmPreviewRow::setFrames(const QVector<QImage> &newFrames) {
+void AlgorithmPreviewRow::setFrames(const QVector<PreviewFrame> &newFrames) {
     frames = newFrames;
     firstVisibleFrame = 0;
     updateFrames();
@@ -57,22 +57,26 @@ void AlgorithmPreviewRow::updateFrames() {
             caption->setText("Unknown");
             continue;
         }
+
+        const PreviewFrame &item = frames[index];
+
+        view->setImage(item.frame);
+
+        if (item.frame.isNull()) {
+            caption->setText("Pending");
+            view->setText("Waiting for next step");
+            continue;
+        }
+
         if (index == 0) {
             caption->setText("Start Frame");
         } else if (index == frames.size() - 1) {
             caption->setText("Ending Frame");
         } else {
-            caption->setText(QString("Frame %1").arg(index + 1));
-        }
-
-
-        view->setImage(frames[index]);
-
-        if (frames[index].isNull()) {
-            view->setText("Waiting for next step");
-
-        } else {
-            view->setText(QString("Frame %1").arg(index + 1));
+            QString textFrame = item.isOriginal ?
+                QString("Original | Frame %1").arg(index + 1) :
+                QString("Interpolated | Frame %1").arg(index + 1);
+            caption->setText(textFrame);
         }
     }
 }

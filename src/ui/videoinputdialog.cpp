@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QTime>
 #include <cmath>
+#include <QSignalBlocker>
+#include <algorithm>
 
 VideoInputDialog::VideoInputDialog(QWidget *parent)
     : QDialog(parent)
@@ -101,6 +103,9 @@ VideoInputDialog::VideoInputDialog(QWidget *parent)
         ui->keepEverySpinBox->setEnabled(false);
         ui->positionTimeEdit->setTime(QTime(0, 0, 0));
 
+        ui->sourceFrameSlider->setEnabled(false);
+        ui->positionTimeEdit->setEnabled(false);
+
         updateSelection();
 
         if(!videoReader.open(path)) {
@@ -158,6 +163,32 @@ VideoInputDialog::VideoInputDialog(QWidget *parent)
         ui->setEndButton->setEnabled(true);
         ui->nextFrameButton->setToolTip(QString{});
         ui->nextFrameButton->setEnabled(true);
+
+        if (!videoReader.buildFrameIndex(path)) {
+            QMessageBox::warning(this, "Video error", videoReader.errorString());
+            return;
+        }
+
+        //the slider represents milliseconds
+        const double lastTime = videoReader.frameTimes().last();
+
+        const int maximumMilliseconds = static_cast<int>(
+            std::min(
+                std::ceil(lastTime * 1000.0), 24.0 * 60.0 * 60.0 * 1000.0 - 1));
+
+        {
+            const QSignalBlocker blocker(ui->sourceFrameSlider);
+
+            ui->sourceFrameSlider->setRange(0, maximumMilliseconds);
+            ui->sourceFrameSlider->setValue(0);
+        }
+
+        ui->positionTimeEdit->setTimeRange(
+            QTime(0, 0),
+            QTime::fromMSecsSinceStartOfDay(maximumMilliseconds));
+
+        ui->sourceFrameSlider->setEnabled(true);
+        ui->positionTimeEdit->setEnabled(true);
     });
 
     connect(ui->useSelectionButton, &QPushButton::clicked,
@@ -169,6 +200,19 @@ VideoInputDialog::VideoInputDialog(QWidget *parent)
 
         accept();
     });
+
+
+    connect(ui->positionTimeEdit, &QTimeEdit::editingFinished,
+            this, [this]() {
+        showFrameAtTime(ui->positionTimeEdit->time().msecsSinceStartOfDay() / 1000.0);
+    });
+
+    ui->sourceFrameSlider->setTracking(false);
+
+    connect(ui->sourceFrameSlider, &QSlider::valueChanged,
+            this, [this](int milliseconds) {
+        showFrameAtTime(milliseconds / 1000.0);
+    });
 }
 
 VideoInputDialog::~VideoInputDialog()
@@ -177,6 +221,9 @@ VideoInputDialog::~VideoInputDialog()
 }
 
 void VideoInputDialog::displayFrame(const VideoFrame &frame) {
+    const QSignalBlocker sliderBlocker(ui->sourceFrameSlider);
+    const QSignalBlocker timeBlocker(ui->positionTimeEdit);
+
     currentFrame = frame;
 
     ui->sourceFrameView->setImage(frame.image);
@@ -213,6 +260,8 @@ void VideoInputDialog::displayFrame(const VideoFrame &frame) {
             )
         );
 
+    ui->sourceFrameSlider->setValue(static_cast<int>(milliseconds));
+
     ui->positionTimeEdit->setToolTip(
         "Time relative to the first timestamped video frame."
         );
@@ -236,4 +285,20 @@ VideoSelection VideoInputDialog::selection() const {
     result.keepEvery = ui->keepEverySpinBox->value();
 
     return result;
+}
+
+void VideoInputDialog::showFrameAtTime(double seconds) {
+    VideoFrame frame;
+
+    if (!videoReader.readFrameAtTime(seconds, frame)) {
+        QMessageBox::warning(this, "Video error", videoReader.errorString());
+
+        displayFrame(currentFrame);
+        return;
+    }
+
+    displayFrame(frame);
+
+    //could have been disabled
+    ui->nextFrameButton->setEnabled(true);
 }

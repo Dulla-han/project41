@@ -35,7 +35,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(rifeRunner, &RifeRunner::finished,
             this, [this](const QVector<QImage> &frames) {
-                rifeRow->setFrames(frames);
+                QVector<PreviewFrame> resultFrames;
+                resultFrames.reserve(frames.size());
+
+                for (qsizetype i = 0; i < frames.size(); ++i) {
+                    const bool original = i == 0 || i == frames.size() - 1;
+
+                    resultFrames.append(PreviewFrame{frames[i], original});
+                }
+
+                rifeRow->setFrames(resultFrames);
                 updateVisibleFrames();
 
                 ui->runButton->setEnabled(true);
@@ -46,8 +55,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(rifeRunner, &RifeRunner::failed,
             this, [this](const QString &message) {
-                ui->runButton->setEnabled(!startFrame.isNull() &&
-                                          !endFrame.isNull());
+                ui->runButton->setEnabled(!startFrame.frame.isNull() &&
+                                          !endFrame.frame.isNull());
                 ui->actionLoadFrames->setEnabled(true);
                 ui->interpolationMulComboBox->setEnabled(true);
                 ui->statusbar->showMessage("RIFE failed", 5000);
@@ -147,43 +156,45 @@ void MainWindow::loadFrames(){
     const QString startPath = QFileDialog::getOpenFileName(this, "Choose the starting frame", QString(), filter);
 
     if (startPath.isEmpty()){
-        QMessageBox::warning(this, "Error", "Input path is empty or corrupted");
         return;
     }
 
     const QString endPath = QFileDialog::getOpenFileName(this, "Choose the ending frame", QString(), filter);
 
     if (endPath.isEmpty()){
-        QMessageBox::warning(this, "Error", "Input path is empty or corrupted");
         return;
     }
 
-    const QImage newStart(startPath);
-    const QImage newEnd(endPath);
+    PreviewFrame newStart{};
+    newStart.frame = QImage(startPath);
+    newStart.isOriginal = true;
+    PreviewFrame newEnd{};
+    newEnd.frame = QImage(endPath);
+    newEnd.isOriginal = true;
 
-    if(newStart.isNull() || newEnd.isNull()) {
+    if(newStart.frame.isNull() || newEnd.frame.isNull()) {
         QMessageBox::warning(this, "Error", "One of the frames could not be loaded");
         return;
     }
 
 
-    if(newStart.size() != newEnd.size()) {
+    if(newStart.frame.size() != newEnd.frame.size()) {
         QMessageBox::warning(this, "Error", "Sizes of images does not match");
         return;
     }
 
+    videoSequence = VideoSequence{};
+    videoSelection = VideoSelection{};
+
     startFrame = newStart;
     endFrame = newEnd;
-
-    startFramePath = startPath;
-    endFramePath = endPath;
 
     ui->contentStack->setCurrentWidget(ui->previewPage);
 
     //adding 3 Images to the previewFrames
     previewFrames = {
         startFrame,
-        QImage(),
+        PreviewFrame{},
         endFrame
     };
 
@@ -191,13 +202,7 @@ void MainWindow::loadFrames(){
 
     rifeRow->setFrames(previewFrames);
 
-    const int maximumIndex = std::max(0, static_cast<int>(previewFrames.size()) - 3);
-
-    ui->frameSlider->setRange(0, maximumIndex);
-    ui->frameSlider->setValue(0);
-    ui->frameSlider->setEnabled(maximumIndex > 0);
-
-    updateVisibleFrames();
+    configurePreviewSlider();
 
     ui->runButton->setEnabled(true);
 }
@@ -212,7 +217,7 @@ void MainWindow::updateVisibleFrames() {
 void MainWindow::runExperiment() {
     if (rifeRunner->isRunning()) return;
 
-    if (startFrame.isNull() || endFrame.isNull()) return;
+    if (startFrame.frame.isNull() || endFrame.frame.isNull()) return;
 
     const int multiplier = ui->interpolationMulComboBox->currentData().toInt();
 
@@ -225,30 +230,31 @@ void MainWindow::runExperiment() {
     previewFrames.clear();
     previewFrames.append(startFrame);
 
+
     for (int i = 1; i <= frameCount; i++) {
         const double t = static_cast<double>(i) / multiplier;
 
-        previewFrames.append(interpolateBlend(startFrame, endFrame, t));
+
+        previewFrames.append(
+            PreviewFrame{
+                interpolateBlend(startFrame.frame, endFrame.frame, t),
+                false
+            }
+        );
     }
 
     previewFrames.append(endFrame);
     blendRow->setFrames(previewFrames);
 
-    QVector<QImage> rifeFrames(frameCount + 2);
+    QVector<PreviewFrame> rifeFrames(frameCount + 2);
     rifeFrames.first() = startFrame;
     rifeFrames.last() = endFrame;
 
     rifeRow->setFrames(rifeFrames);
 
-    const int maximumIndex = std::max(0, static_cast<int>(previewFrames.size()) - 3);
-
-    ui->frameSlider->setRange(0, maximumIndex);
-    ui->frameSlider->setValue(0);
-    ui->frameSlider->setEnabled(maximumIndex > 0);
-
     ui->contentStack->setCurrentWidget(ui->previewPage);
-    updateVisibleFrames();
-    rifeRunner->start(startFrame, endFrame, multiplier);
+    configurePreviewSlider();
+    rifeRunner->start(startFrame.frame, endFrame.frame, multiplier);
 }
 
 void MainWindow::loadVideoSelection(const VideoSelection &selection) {
@@ -277,8 +283,8 @@ void MainWindow::loadVideoSelection(const VideoSelection &selection) {
         ui->actionLoadVideo->setEnabled(true);
 
         if (!result.error.isEmpty()) {
-            ui->runButton->setEnabled(!startFrame.isNull() &&
-                                      !endFrame.isNull());
+            ui->runButton->setEnabled(!startFrame.frame.isNull() &&
+                                      !endFrame.frame.isNull());
 
             ui->statusbar->showMessage("Video loading failed", 5000);
 
@@ -290,17 +296,14 @@ void MainWindow::loadVideoSelection(const VideoSelection &selection) {
         videoSelection = selection;
         videoSequence = result;
 
-        startFrame = QImage{};
-        endFrame = QImage{};
-        startFramePath.clear();
-        endFramePath.clear();
+        startFrame.frame = QImage{};
+        startFrame.isOriginal = false;
+        endFrame.frame = QImage{};
+        endFrame.isOriginal= false;
 
-        previewFrames.clear();
-        blendRow->setFrames(previewFrames);
-        rifeRow->setFrames(previewFrames);
+        showVideoSequence();
 
-        ui->frameSlider->setRange(0, 0);
-        ui->frameSlider->setEnabled(false);
+        //TODO not connected to interpolation yet
         ui->runButton->setEnabled(false);
 
         ui->statusbar->showMessage(QString("Loaded %1 original frames | %2 algorithm input frames")
@@ -314,5 +317,30 @@ void MainWindow::loadVideoSelection(const VideoSelection &selection) {
     //the worker doesn't depend on the main window remaining alive
     watcher->setFuture(QtConcurrent::run([selection](){
         return loadVideoSequence(selection);
-    });
+        })
+    );
+}
+
+void MainWindow::showVideoSequence() {
+    previewFrames.clear();
+    previewFrames.reserve(videoSequence.inputPositions.size());
+
+    for (const qint64 position : videoSequence.inputPositions) {
+        previewFrames.append(PreviewFrame{videoSequence.originals[position].image, true});
+    }
+
+    blendRow->setFrames(previewFrames);
+    rifeRow->setFrames(previewFrames);
+
+    configurePreviewSlider();
+}
+
+void MainWindow::configurePreviewSlider() {
+    const int maximumIndex = std::max(0, static_cast<int>(previewFrames.size()) - 3);
+
+    ui->frameSlider->setRange(0, maximumIndex);
+    ui->frameSlider->setValue(0);
+    ui->frameSlider->setEnabled(maximumIndex > 0);
+
+    updateVisibleFrames();
 }

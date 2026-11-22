@@ -4,7 +4,7 @@
 #include <QString>
 #include <QtGlobal>
 #include <QImage>
-
+#include <QVector>
 
 //these structs are already defined in FFmpeg lib
 //we only need to declare it
@@ -41,10 +41,22 @@ public:
 
     bool open(const QString &path);
     void close();
-    bool readNextFrame(VideoFrame &frame);
+
+    //decodes the next frame
+    //when loadImage is false, returns only its index and timestamp
+    bool readNextFrame(VideoFrame &fram, bool loadImage=true);
+
+    //scans the video with a separate reader and records frame times
+    bool buildFrameIndex(const QString &path);
+
+    //seeks to a keyframe before the requested position and decodes forward
+    //returns the first frame at or after the requsted time
+    bool readFrameAtTime(double seconds, VideoFrame &frame);
 
     const VideoInfo &info() const;
     QString errorString() const;
+    //returns timestamps in source frame order
+    const QVector<double> &frameTimes() const;
 
 private:
     AVFormatContext *formatContext = nullptr;
@@ -56,6 +68,8 @@ private:
     AVFrame *decodedFrame = nullptr;
     //formats image into a preferable format for QImage
     SwsContext *scaleContext = nullptr;
+
+    QVector<double> indexedFrameTimes;
 
     bool inputEnded = false;
 

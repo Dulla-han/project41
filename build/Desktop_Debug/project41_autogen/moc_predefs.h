@@ -242,6 +242,7 @@
 #define __DEC128_MIN_EXP__ (-6142)
 #define __DEC128_MAX__ 9.999999999999999999999999999999999E6144DL
 #define __INT_FAST32_TYPE__ long int
+#define QT_CONCURRENT_LIB 1
 #define __UINT_LEAST16_TYPE__ short unsigned int
 #define __DEC64X_MANT_DIG__ 34
 #define __DEC128_MAX_EXP__ 6145

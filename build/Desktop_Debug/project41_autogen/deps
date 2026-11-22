@@ -532,6 +532,15 @@ project41_autogen/timestamp: \
 	/usr/lib64/cmake/Qt6/QtPublicToolHelpers.cmake \
 	/usr/lib64/cmake/Qt6/QtPublicWalkLibsHelpers.cmake \
 	/usr/lib64/cmake/Qt6/QtPublicWindowsHelpers.cmake \
+	/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake \
+	/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake \
+	/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake \
+	/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake \
+	/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake \
+	/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake \
+	/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentTargets.cmake \
+	/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentTargetsPrecheck.cmake \
+	/usr/lib64/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake \
 	/usr/lib64/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake \
 	/usr/lib64/cmake/Qt6Core/Qt6CoreConfig.cmake \
 	/usr/lib64/cmake/Qt6Core/Qt6CoreConfigExtras.cmake \

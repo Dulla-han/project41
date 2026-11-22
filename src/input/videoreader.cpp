@@ -9,6 +9,8 @@ extern "C" {
 }
 
 #include <cerrno>
+#include <algorithm>
+#include <cmath>
 
 namespace {
 
@@ -144,9 +146,11 @@ void VideoReader::close(){
     hasFirstTimestamp = false;
     videoInfo = VideoInfo();
     inputEnded = false;
+
+    indexedFrameTimes.clear();
 }
 
-bool VideoReader::readNextFrame(VideoFrame &frame) {
+bool VideoReader::readNextFrame(VideoFrame &frame, bool loadImage) {
     frame = VideoFrame{};
     lastError.clear();
 
@@ -180,6 +184,34 @@ bool VideoReader::readNextFrame(VideoFrame &frame) {
                 timeSeconds = (static_cast<double>(timestamp)
                                - static_cast<double>(firstTimestamp))
                               * av_q2d(stream->time_base);
+            }
+
+            if (!indexedFrameTimes.isEmpty()) {
+                const auto position = std::lower_bound(
+                    indexedFrameTimes.cbegin(),
+                    indexedFrameTimes.cend(),
+                    timeSeconds);
+
+                if (position == indexedFrameTimes.cend() ||
+                    *position != timeSeconds) {
+                    lastError = "The decoded frame could not be matched to the frame index.";
+
+                    av_frame_unref(decodedFrame);
+                    return false;
+                }
+
+                nextFrameIndex = position - indexedFrameTimes.cbegin();
+            }
+
+            //index building needs frame timing
+            if (!loadImage) {
+                frame.index = nextFrameIndex;
+                frame.timeSeconds = timeSeconds;
+
+                ++nextFrameIndex;
+                //release the decoded frame after copying the data
+                av_frame_unref(decodedFrame);
+                return true;
             }
 
             scaleContext = sws_getCachedContext(
@@ -297,6 +329,117 @@ bool VideoReader::readNextFrame(VideoFrame &frame) {
             return false;
         }
     }
+}
+
+bool VideoReader::buildFrameIndex(const QString &path) {
+    lastError.clear();
+
+    VideoReader scanner;
+
+    if (!scanner.open(path)) {
+        lastError = scanner.errorString();
+        return false;
+    }
+
+    QVector<double> times;
+    VideoFrame frame;
+
+    while (scanner.readNextFrame(frame, false)) {
+        if (frame.timeSeconds < 0.0) {
+            lastError = "Time navigation requires timestamps for every frame.";
+            return false;
+        }
+
+        if (!times.isEmpty() && frame.timeSeconds <= times.last()) {
+            lastError = "Time navigation is not increasing which it should be.";
+            return false;
+        }
+
+        times.append(frame.timeSeconds);
+    }
+
+    if (!scanner.errorString().isEmpty()) {
+        lastError = scanner.errorString();
+        return false;
+    }
+
+    if (times.isEmpty()) {
+        lastError = "The video contains no decodable frames.";
+        return false;
+    }
+
+    indexedFrameTimes = times;
+
+    //keep the same timestamp origin as the indexing reader
+    firstTimestamp = scanner.firstTimestamp;
+    hasFirstTimestamp = scanner.hasFirstTimestamp;
+
+    return true;
+}
+
+bool VideoReader::readFrameAtTime(double seconds, VideoFrame &frame) {
+    frame = VideoFrame{};
+    lastError.clear();
+
+    if (indexedFrameTimes.isEmpty()) {
+        lastError = "The video frame index is not ready.";
+        return false;
+    }
+
+
+    auto target = std::lower_bound(
+        indexedFrameTimes.cbegin(),
+        indexedFrameTimes.cend(),
+        std::max(0.0, seconds));
+
+    if (target == indexedFrameTimes.cend()) {
+        --target;
+    }
+
+    const qint64 targetIndex = target - indexedFrameTimes.cbegin();
+
+    const AVStream *stream = formatContext->streams[videoStreamIndex];
+
+    const qint64 timestamp = firstTimestamp + static_cast<qint64>(std::llround(*target / av_q2d(stream->time_base)));
+
+    const int result = av_seek_frame(
+        formatContext,
+        videoStreamIndex,
+        timestamp,
+        AVSEEK_FLAG_BACKWARD);
+
+    if (result < 0) {
+        lastError = "Unable to seek in the video: " + describeError(result);
+        return false;
+    }
+
+    avcodec_flush_buffers(codecContext);
+    av_packet_unref(packet);
+    av_frame_unref(decodedFrame);
+    inputEnded = false;
+
+    while (readNextFrame(frame)) {
+        if (frame.index == targetIndex) {
+            return true;
+        }
+
+        if (frame.index > targetIndex) {
+            lastError = "Seeking skipped the requested frame.";
+            frame = VideoFrame{};
+            return false;
+        }
+    }
+
+    if (lastError.isEmpty()) {
+        lastError = "The requested frame could not be decoded.";
+    }
+
+    frame = VideoFrame{};
+    return false;
+}
+
+const QVector<double> &VideoReader::frameTimes() const {
+    return indexedFrameTimes;
 }
 
 const VideoInfo &VideoReader::info() const {

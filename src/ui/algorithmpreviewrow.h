@@ -6,6 +6,12 @@
 #include <QString>
 #include <QImage>
 
+//stores the image and whether it comes from original input
+struct PreviewFrame {
+    QImage frame;
+    bool isOriginal=false;
+};
+
 namespace Ui {
 class AlgorithmPreviewRow;
 }
@@ -18,7 +24,7 @@ public:
     explicit AlgorithmPreviewRow(QWidget *parent = nullptr);
     ~AlgorithmPreviewRow();
     void setAlgorithmName(const QString &name);
-    void setFrames(const QVector<QImage> &frames);
+    void setFrames(const QVector<PreviewFrame> &frames);
     void setFirstVisibleFrame(int index);
     void setCaptionVisible(bool visible);
 
@@ -28,7 +34,7 @@ protected:
 private:
     void updateFrames();
 
-    QVector<QImage> frames;
+    QVector<PreviewFrame> frames;
     int firstVisibleFrame = 0;
 
     Ui::AlgorithmPreviewRow *ui;

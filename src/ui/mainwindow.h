@@ -7,6 +7,7 @@
 #include <QString>
 
 #include "input/videoselection.h"
+#include "algorithmpreviewrow.h"
 
 class AlgorithmPreviewRow;
 class RifeRunner;
@@ -29,13 +30,15 @@ private:
     void runExperiment();
     //the currently loaded input is replaced only after successful loading
     void loadVideoSelection(const VideoSelection &selection);
+    //loads the retained original inputs into each row, configures the navigation
+    void showVideoSequence();
+    //configures scrolling for three visible frames and returs to the start
+    void configurePreviewSlider();
 
+    QVector<PreviewFrame> previewFrames;
 
-
-    QVector<QImage> previewFrames;
-
-    QImage startFrame;
-    QImage endFrame;
+    PreviewFrame startFrame;
+    PreviewFrame endFrame;
 
     Ui::MainWindow *ui;
 
@@ -44,12 +47,11 @@ private:
     AlgorithmPreviewRow *rifeRow = nullptr;
     RifeRunner *rifeRunner = nullptr;
 
-    QString startFramePath;
-    QString endFramePath;
-
     VideoSelection videoSelection;
     VideoSequence videoSequence;
     bool videoLoading = false;
+
+    bool algorithmIntepolated = false;
 
 };
 

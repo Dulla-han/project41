@@ -22,9 +22,13 @@ public:
 
 private:
     Ui::VideoInputDialog *ui;
-    VideoReader videoReader;
 
     void displayFrame(const VideoFrame &frame);
+
+    //loads the frame at the requested time and refreshes the preview
+    void showFrameAtTime(double seconds);
+
+    VideoReader videoReader;
 
     qint64 startFrameIndex = -1;
     qint64 endFrameIndex = -1;
