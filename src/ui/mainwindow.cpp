@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(rifeRunner, &RifeRunner::started,
             this, [this]() {
                 ui->runButton->setEnabled(false);
+                ui->actionLoadVideo->setEnabled(false);
                 ui->actionLoadFrames->setEnabled(false);
                 ui->interpolationMulComboBox->setEnabled(false);
                 ui->statusbar->showMessage("RIFE running...");
@@ -35,29 +36,40 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(rifeRunner, &RifeRunner::finished,
             this, [this](const QVector<QImage> &frames) {
-                QVector<PreviewFrame> resultFrames;
-                resultFrames.reserve(frames.size());
+                const int offset = rifePairIndex * runMultiplier;
 
-                for (qsizetype i = 0; i < frames.size(); ++i) {
-                    const bool original = i == 0 || i == frames.size() - 1;
-
-                    resultFrames.append(PreviewFrame{frames[i], original});
+                for (int step = 1; step < runMultiplier; ++step) {
+                    rifePreviewFrames[offset + step] = PreviewFrame{frames[step], false};
                 }
 
-                rifeRow->setFrames(resultFrames);
+                rifeRow->setFrames(rifePreviewFrames);
                 updateVisibleFrames();
+
+                ++rifePairIndex;
+
+                if (rifePairIndex + 1 < rifeInputs.size()) {
+                    rifeRunner->start(
+                        rifeInputs[rifePairIndex],
+                        rifeInputs[rifePairIndex + 1],
+                        runMultiplier);
+                    return;
+                }
 
                 ui->runButton->setEnabled(true);
                 ui->actionLoadFrames->setEnabled(true);
+                ui->actionLoadVideo->setEnabled(true);
                 ui->interpolationMulComboBox->setEnabled(true);
+
                 ui->statusbar->showMessage("RIFE finished", 5000);
             });
 
     connect(rifeRunner, &RifeRunner::failed,
             this, [this](const QString &message) {
-                ui->runButton->setEnabled(!startFrame.frame.isNull() &&
-                                          !endFrame.frame.isNull());
+                ui->runButton->setEnabled(
+                    videoSequence.inputPositions.size() >= 2 ||
+                    (!startFrame.frame.isNull() && !endFrame.frame.isNull()));
                 ui->actionLoadFrames->setEnabled(true);
+                ui->actionLoadVideo->setEnabled(true);
                 ui->interpolationMulComboBox->setEnabled(true);
                 ui->statusbar->showMessage("RIFE failed", 5000);
 
@@ -215,46 +227,68 @@ void MainWindow::updateVisibleFrames() {
 }
 
 void MainWindow::runExperiment() {
-    if (rifeRunner->isRunning()) return;
+    if (rifeRunner->isRunning() || videoLoading) return;
 
-    if (startFrame.frame.isNull() || endFrame.frame.isNull()) return;
+    runMultiplier = ui->interpolationMulComboBox->currentData().toInt();
 
-    const int multiplier = ui->interpolationMulComboBox->currentData().toInt();
-
-    if (multiplier != 2 && multiplier != 4 && multiplier != 8 && multiplier != 16 ) {
+    if (runMultiplier != 2 && runMultiplier != 4 && runMultiplier!= 8 && runMultiplier!= 16 ) {
         return;
     }
 
-    const int frameCount = multiplier - 1;
+    rifeInputs.clear();
 
-    previewFrames.clear();
-    previewFrames.append(startFrame);
+    if (!videoSequence.inputPositions.isEmpty()) {
+        for (const qint64 position : videoSequence.inputPositions) {
+            rifeInputs.append(videoSequence.originals[position].image);
+        }
+    } else {
+        if (startFrame.frame.isNull() || endFrame.frame.isNull()) {
+            return;
+        }
 
-
-    for (int i = 1; i <= frameCount; i++) {
-        const double t = static_cast<double>(i) / multiplier;
-
-
-        previewFrames.append(
-            PreviewFrame{
-                interpolateBlend(startFrame.frame, endFrame.frame, t),
-                false
-            }
-        );
+        rifeInputs.append(startFrame.frame);
+        rifeInputs.append(endFrame.frame);
     }
 
-    previewFrames.append(endFrame);
+    if (rifeInputs.size() < 2) {
+        return;
+    }
+
+    previewFrames.clear();
+    rifePreviewFrames.clear();
+    rifePairIndex = 0;
+
+    for (qsizetype pair = 0; pair + 1 < rifeInputs.size(); ++pair) {
+        const QImage &first = rifeInputs[pair];
+        const QImage &last = rifeInputs[pair + 1];
+
+        //each interval contributes its starting original
+        //and intermediate positions
+        //its ending original belongs to the following interval
+        //so its not duplicated
+        previewFrames.append(PreviewFrame{first, true});
+        rifePreviewFrames.append(PreviewFrame{first, true});
+
+        for (int step = 1; step < runMultiplier; ++step) {
+            const double t = static_cast<double>(step) / runMultiplier;
+
+            previewFrames.append(PreviewFrame{
+                interpolateBlend(first, last, t), false
+            });
+
+            rifePreviewFrames.append(PreviewFrame{});
+        }
+    }
+
+    previewFrames.append(PreviewFrame{rifeInputs.last(), true});
+    rifePreviewFrames.append(PreviewFrame{rifeInputs.last(), true});
     blendRow->setFrames(previewFrames);
-
-    QVector<PreviewFrame> rifeFrames(frameCount + 2);
-    rifeFrames.first() = startFrame;
-    rifeFrames.last() = endFrame;
-
-    rifeRow->setFrames(rifeFrames);
+    rifeRow->setFrames(rifePreviewFrames);
 
     ui->contentStack->setCurrentWidget(ui->previewPage);
     configurePreviewSlider();
-    rifeRunner->start(startFrame.frame, endFrame.frame, multiplier);
+
+    rifeRunner->start(rifeInputs[0], rifeInputs[1], runMultiplier);
 }
 
 void MainWindow::loadVideoSelection(const VideoSelection &selection) {
@@ -303,14 +337,13 @@ void MainWindow::loadVideoSelection(const VideoSelection &selection) {
 
         showVideoSequence();
 
-        //TODO not connected to interpolation yet
-        ui->runButton->setEnabled(false);
+        ui->runButton->setEnabled(
+            videoSequence.inputPositions.size() >= 2 ||
+            (!startFrame.frame.isNull() && !endFrame.frame.isNull()));
 
         ui->statusbar->showMessage(QString("Loaded %1 original frames | %2 algorithm input frames")
                                        .arg(videoSequence.originals.size())
                                        .arg(videoSequence.inputPositions.size()));
-
-
     });
 
     //capture only selection by value

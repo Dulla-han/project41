@@ -46,6 +46,12 @@ private:
 
     AlgorithmPreviewRow *rifeRow = nullptr;
     RifeRunner *rifeRunner = nullptr;
+    QVector<QImage> rifeInputs;
+    QVector<PreviewFrame> rifePreviewFrames;
+
+    int rifePairIndex = 0;
+
+    int runMultiplier = 2;
 
     VideoSelection videoSelection;
     VideoSequence videoSequence;
